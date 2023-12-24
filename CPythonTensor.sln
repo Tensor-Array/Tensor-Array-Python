@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPythonTensor", "CPythonTensor\CPythonTensor.vcxproj", "{79ABB953-907D-469F-9723-42ED1915A4B0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonTensorTesting", "PythonTensorTesting\PythonTensorTesting.pyproj", "{99206FE6-CF46-4140-93B2-3F659D2CA890}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|Any CPU.Build.0 = Debug|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|x64.ActiveCfg = Debug|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|x64.Build.0 = Debug|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|x86.ActiveCfg = Debug|Win32
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Debug|x86.Build.0 = Debug|Win32
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|Any CPU.ActiveCfg = Release|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|Any CPU.Build.0 = Release|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|x64.ActiveCfg = Release|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|x64.Build.0 = Release|x64
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|x86.ActiveCfg = Release|Win32
+		{79ABB953-907D-469F-9723-42ED1915A4B0}.Release|x86.Build.0 = Release|Win32
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Release|x64.ActiveCfg = Release|Any CPU
+		{99206FE6-CF46-4140-93B2-3F659D2CA890}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F504DBBF-809B-49DA-9604-93EE9EB84AB4}
+	EndGlobalSection
+EndGlobal
