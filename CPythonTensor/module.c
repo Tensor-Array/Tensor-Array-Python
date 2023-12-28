@@ -8,10 +8,10 @@ typedef struct
     void* t;
 } PyTensorObject;
 
-static PyObject* Tensor_new(PyTypeObject* type, PyObject* args)
+static int Tensor_init(PyTensorObject* self, PyObject* args)
 {
     PyObject *input_array;
-    PyArg_ParseTuple(args, "|O", &input_array);
+    PyArg_ParseTuple(args, "O", &input_array);
 
     PyArrayObject* np_array = PyArray_FROM_OTF(input_array, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
     if (np_array == NULL) {
@@ -26,12 +26,20 @@ static PyObject* Tensor_new(PyTypeObject* type, PyObject* args)
         c_dims[i] = dims[i];
     }
 
-    PyTensorObject* self;
-    self = type->tp_alloc(type, 0);
     if (self != NULL) {
         self->t = call_tensor(ndims, c_dims, PyArray_DATA(np_array));
     }
     free(c_dims);
+    return self;
+}
+
+static PyObject* Tensor_new(PyTypeObject* type, PyObject* args)
+{
+    PyTensorObject* self;
+    self = type->tp_alloc(type, 0);
+    if (self != NULL) {
+        self->t = 0;
+    }
     return self;
 }
 
@@ -59,6 +67,7 @@ static PyTypeObject TensorType =
     .tp_basicsize = sizeof(PyTensorObject),
     .tp_itemsize = 0,
     .tp_flags = Py_TPFLAGS_DEFAULT,
+    .tp_init = Tensor_init,
     .tp_new = Tensor_new,
     .tp_dealloc = Tensor_dealloc,
     .tp_methods = Tensor_methods,

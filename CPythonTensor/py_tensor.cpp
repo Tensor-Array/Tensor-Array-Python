@@ -14,6 +14,11 @@ void delete_tensor(void* t)
     delete t;
 }
 
+void add_tensor(const void* a, const void* b)
+{
+    return;
+}
+
 const char* to_string(void* t)
 {
     Tensor* t1 = static_cast<Tensor*>(t);
