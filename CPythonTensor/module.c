@@ -37,9 +37,8 @@ static PyObject* Tensor_new(PyTypeObject* type, PyObject* args)
 {
     PyTensorObject* self;
     self = type->tp_alloc(type, 0);
-    if (self != NULL) {
+    if (self != NULL)
         self->t = 0;
-    }
     return self;
 }
 
