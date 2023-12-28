@@ -1,5 +1,6 @@
 #include "module.h"
 #include <Python.h>
+#include <numpy/arrayobject.h>
 
 typedef struct
 {
@@ -7,21 +8,30 @@ typedef struct
     void* t;
 } PyTensorObject;
 
-static PyObject* Tensor_new(PyTypeObject* type, PyObject* args, PyObject* kwds)
+static PyObject* Tensor_new(PyTypeObject* type, PyObject* args)
 {
-    static char* kwlist[] = { "dtype", "shape", "data", NULL};
-    PyObject *dtype, *shape;
-    Py_ssize_t data_ptr;
-    PyArg_ParseTupleAndKeywords(args, kwds, "|OOn", kwlist, &dtype, &shape, &data_ptr);
-    unsigned int* ca = calloc(PyTuple_GET_SIZE(shape), sizeof(unsigned int));
-    for (Py_ssize_t i = 0; i < PyTuple_GET_SIZE(shape); i++)
-        ca[i] = _PyLong_AsInt(PyTuple_GET_ITEM(shape, i));
+    PyObject *input_array;
+    PyArg_ParseTuple(args, "|O", &input_array);
+
+    PyArrayObject* np_array = PyArray_FROM_OTF(input_array, NPY_FLOAT, NPY_ARRAY_IN_ARRAY);
+    if (np_array == NULL) {
+        return NULL; // Error handling for NumPy array conversion
+    }
+
+    int ndims = PyArray_NDIM(np_array);
+    npy_intp* dims = PyArray_DIMS(np_array);
+    unsigned int* c_dims = calloc(ndims, sizeof(unsigned int));
+    for (size_t i = 0; i < ndims; i++)
+    {
+        c_dims[i] = dims[i];
+    }
+
     PyTensorObject* self;
     self = type->tp_alloc(type, 0);
     if (self != NULL) {
-        self->t = call_tensor(PyTuple_GET_SIZE(shape), ca, data_ptr);
+        self->t = call_tensor(ndims, c_dims, PyArray_DATA(np_array));
     }
-    free(ca);
+    free(c_dims);
     return self;
 }
 
@@ -66,6 +76,7 @@ static PyModuleDef tensor_module =
 PyMODINIT_FUNC
 PyInit_tensor()
 {
+    import_array();
     PyObject* m;
     if (PyType_Ready(&TensorType) < 0)
         return NULL;

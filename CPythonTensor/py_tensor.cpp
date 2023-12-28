@@ -6,7 +6,7 @@ using namespace tensor_array::value;
 
 void* call_tensor(unsigned int nd, unsigned int* dimensions, const void* data)
 {
-    return new Tensor(TensorBase(typeid(int), std::initializer_list(dimensions, dimensions + nd), data, tensor_array::devices::DEVICE_CPU_0, tensor_array::devices::DEVICE_CPU_0));
+    return new Tensor(TensorBase(typeid(float), std::initializer_list(dimensions, dimensions + nd), data, tensor_array::devices::DEVICE_CPU_0));
 }
 
 void delete_tensor(void* t)
