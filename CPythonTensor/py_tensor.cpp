@@ -14,15 +14,17 @@ void delete_tensor(void* t)
     delete t;
 }
 
-void add_tensor(const void* a, const void* b)
+void* add_tensor(const void* a, const void* b)
 {
-    return;
+    const Tensor* t_a = static_cast<const Tensor*>(a);
+    const Tensor* t_b = static_cast<const Tensor*>(b);
+    return new Tensor(add(*t_a, *t_b));
 }
 
 const char* to_string(void* t)
 {
     Tensor* t1 = static_cast<Tensor*>(t);
-    std::ostringstream steam;
-    steam << *t1;
-    return steam.str().c_str();
+    std::ostringstream stream;
+    stream << *t1;
+    return stream.str().c_str();
 }

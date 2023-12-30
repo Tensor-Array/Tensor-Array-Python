@@ -30,6 +30,7 @@ static int Tensor_init(PyTensorObject* self, PyObject* args)
         self->t = call_tensor(ndims, c_dims, PyArray_DATA(np_array));
     }
     free(c_dims);
+    Py_DECREF(np_array);
     return self;
 }
 
@@ -54,7 +55,18 @@ Tensor_ToString(PyTensorObject* self)
     return PyUnicode_FromString(to_string(self->t));
 }
 
-static PyMethodDef Tensor_methods[] = {
+static PyTensorObject* Tensor_add(PyTensorObject* self, PyTensorObject* other)
+{
+    PyTensorObject* val;
+    if (self != NULL) {
+        self->t = add_tensor(self->t, other->t);
+    }
+    return self;
+}
+
+static PyMethodDef Tensor_methods[] =
+{
+    //{"__add__", Tensor_add, METH_O, ""},
     {NULL}  /* Sentinel */
 };
 
@@ -62,7 +74,7 @@ static PyTypeObject TensorType =
 {
     .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
     .tp_name = "tensor.Tensor",
-    .tp_doc = PyDoc_STR("Custom objects"),
+    .tp_doc = PyDoc_STR("Tensor"),
     .tp_basicsize = sizeof(PyTensorObject),
     .tp_itemsize = 0,
     .tp_flags = Py_TPFLAGS_DEFAULT,
