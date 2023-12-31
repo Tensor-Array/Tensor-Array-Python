@@ -1,4 +1,4 @@
-from lib import tensor as t
+from lib import tensor2 as t
 import numpy as np
 
 print("hello")
