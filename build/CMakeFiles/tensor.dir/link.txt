@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -g -shared -Wl,-soname,tensor.so -o ../lib/tensor.so CMakeFiles/tensor.dir/src/tensor_bind.cc.o   -L/mnt/d/C++_ver2/TensorMain_wsl2/lib  -Wl,-rpath,/mnt/d/C++_ver2/TensorMain_wsl2/lib: -lTensorCore_Core 
+/usr/bin/c++ -fPIC -g -shared -Wl,-soname,tensor.so -o ../lib/tensor.so CMakeFiles/tensor.dir/include/tensor_bind.cc.o   -L/mnt/d/C++_ver2/TensorMain_wsl2/lib  -Wl,-rpath,/mnt/d/C++_ver2/TensorMain_wsl2/lib: -lTensorCore_Core 

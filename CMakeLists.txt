@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
 include(CTest)
 enable_testing()
 
-add_library(tensor SHARED src/tensor_bind.cc)
+add_library(tensor SHARED include/tensor_bind.cc)
 
 target_include_directories(
     tensor

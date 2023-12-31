@@ -568,29 +568,29 @@ tensor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/build
 .PHONY : tensor/fast
 
-src/tensor_bind.o: src/tensor_bind.cc.o
-.PHONY : src/tensor_bind.o
+include/tensor_bind.o: include/tensor_bind.cc.o
+.PHONY : include/tensor_bind.o
 
 # target to build an object file
-src/tensor_bind.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/src/tensor_bind.cc.o
-.PHONY : src/tensor_bind.cc.o
+include/tensor_bind.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.o
+.PHONY : include/tensor_bind.cc.o
 
-src/tensor_bind.i: src/tensor_bind.cc.i
-.PHONY : src/tensor_bind.i
+include/tensor_bind.i: include/tensor_bind.cc.i
+.PHONY : include/tensor_bind.i
 
 # target to preprocess a source file
-src/tensor_bind.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/src/tensor_bind.cc.i
-.PHONY : src/tensor_bind.cc.i
+include/tensor_bind.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.i
+.PHONY : include/tensor_bind.cc.i
 
-src/tensor_bind.s: src/tensor_bind.cc.s
-.PHONY : src/tensor_bind.s
+include/tensor_bind.s: include/tensor_bind.cc.s
+.PHONY : include/tensor_bind.s
 
 # target to generate assembly for a file
-src/tensor_bind.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/src/tensor_bind.cc.s
-.PHONY : src/tensor_bind.cc.s
+include/tensor_bind.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.s
+.PHONY : include/tensor_bind.cc.s
 
 # Help Target
 help:
@@ -636,9 +636,9 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... tensor"
-	@echo "... src/tensor_bind.o"
-	@echo "... src/tensor_bind.i"
-	@echo "... src/tensor_bind.s"
+	@echo "... include/tensor_bind.o"
+	@echo "... include/tensor_bind.i"
+	@echo "... include/tensor_bind.s"
 .PHONY : help
 
 

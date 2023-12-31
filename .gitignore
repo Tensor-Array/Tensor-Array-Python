@@ -1,6 +1,6 @@
-build/.cmake/
-build/src/
-build/Testing/
 .venv/
+.vscode/
+CMakeLists.txt
+build/
 lib/
 bin/

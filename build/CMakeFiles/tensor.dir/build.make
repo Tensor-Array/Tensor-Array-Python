@@ -69,28 +69,28 @@ include CMakeFiles/tensor.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tensor.dir/flags.make
 
-CMakeFiles/tensor.dir/src/tensor_bind.cc.o: CMakeFiles/tensor.dir/flags.make
-CMakeFiles/tensor.dir/src/tensor_bind.cc.o: ../src/tensor_bind.cc
-CMakeFiles/tensor.dir/src/tensor_bind.cc.o: CMakeFiles/tensor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tensor.dir/src/tensor_bind.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tensor.dir/src/tensor_bind.cc.o -MF CMakeFiles/tensor.dir/src/tensor_bind.cc.o.d -o CMakeFiles/tensor.dir/src/tensor_bind.cc.o -c /mnt/d/Python_ver2/TensorCore_python_wsl2/src/tensor_bind.cc
+CMakeFiles/tensor.dir/include/tensor_bind.cc.o: CMakeFiles/tensor.dir/flags.make
+CMakeFiles/tensor.dir/include/tensor_bind.cc.o: ../include/tensor_bind.cc
+CMakeFiles/tensor.dir/include/tensor_bind.cc.o: CMakeFiles/tensor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tensor.dir/include/tensor_bind.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tensor.dir/include/tensor_bind.cc.o -MF CMakeFiles/tensor.dir/include/tensor_bind.cc.o.d -o CMakeFiles/tensor.dir/include/tensor_bind.cc.o -c /mnt/d/Python_ver2/TensorCore_python_wsl2/include/tensor_bind.cc
 
-CMakeFiles/tensor.dir/src/tensor_bind.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tensor.dir/src/tensor_bind.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Python_ver2/TensorCore_python_wsl2/src/tensor_bind.cc > CMakeFiles/tensor.dir/src/tensor_bind.cc.i
+CMakeFiles/tensor.dir/include/tensor_bind.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tensor.dir/include/tensor_bind.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Python_ver2/TensorCore_python_wsl2/include/tensor_bind.cc > CMakeFiles/tensor.dir/include/tensor_bind.cc.i
 
-CMakeFiles/tensor.dir/src/tensor_bind.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tensor.dir/src/tensor_bind.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Python_ver2/TensorCore_python_wsl2/src/tensor_bind.cc -o CMakeFiles/tensor.dir/src/tensor_bind.cc.s
+CMakeFiles/tensor.dir/include/tensor_bind.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tensor.dir/include/tensor_bind.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Python_ver2/TensorCore_python_wsl2/include/tensor_bind.cc -o CMakeFiles/tensor.dir/include/tensor_bind.cc.s
 
 # Object files for target tensor
 tensor_OBJECTS = \
-"CMakeFiles/tensor.dir/src/tensor_bind.cc.o"
+"CMakeFiles/tensor.dir/include/tensor_bind.cc.o"
 
 # External object files for target tensor
 tensor_EXTERNAL_OBJECTS =
 
-../lib/tensor.so: CMakeFiles/tensor.dir/src/tensor_bind.cc.o
+../lib/tensor.so: CMakeFiles/tensor.dir/include/tensor_bind.cc.o
 ../lib/tensor.so: CMakeFiles/tensor.dir/build.make
 ../lib/tensor.so: CMakeFiles/tensor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../lib/tensor.so"
