@@ -556,24 +556,24 @@ ContinuousSubmit/fast:
 .PHONY : ContinuousSubmit/fast
 
 #=============================================================================
-# Target rules for targets named tensor
+# Target rules for targets named tensor2
 
 # Build rule for target.
-tensor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tensor
-.PHONY : tensor
+tensor2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tensor2
+.PHONY : tensor2
 
 # fast build rule for target.
-tensor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/build
-.PHONY : tensor/fast
+tensor2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor2.dir/build.make CMakeFiles/tensor2.dir/build
+.PHONY : tensor2/fast
 
 include/tensor_bind.o: include/tensor_bind.cc.o
 .PHONY : include/tensor_bind.o
 
 # target to build an object file
 include/tensor_bind.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor2.dir/build.make CMakeFiles/tensor2.dir/include/tensor_bind.cc.o
 .PHONY : include/tensor_bind.cc.o
 
 include/tensor_bind.i: include/tensor_bind.cc.i
@@ -581,7 +581,7 @@ include/tensor_bind.i: include/tensor_bind.cc.i
 
 # target to preprocess a source file
 include/tensor_bind.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor2.dir/build.make CMakeFiles/tensor2.dir/include/tensor_bind.cc.i
 .PHONY : include/tensor_bind.cc.i
 
 include/tensor_bind.s: include/tensor_bind.cc.s
@@ -589,7 +589,7 @@ include/tensor_bind.s: include/tensor_bind.cc.s
 
 # target to generate assembly for a file
 include/tensor_bind.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor.dir/build.make CMakeFiles/tensor.dir/include/tensor_bind.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tensor2.dir/build.make CMakeFiles/tensor2.dir/include/tensor_bind.cc.s
 .PHONY : include/tensor_bind.cc.s
 
 # Help Target
@@ -635,7 +635,7 @@ help:
 	@echo "... NightlySubmit"
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
-	@echo "... tensor"
+	@echo "... tensor2"
 	@echo "... include/tensor_bind.o"
 	@echo "... include/tensor_bind.i"
 	@echo "... include/tensor_bind.s"

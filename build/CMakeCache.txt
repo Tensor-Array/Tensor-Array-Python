@@ -318,6 +318,9 @@ TensorCore_Python_LIB_DEPENDS:STATIC=general;TensorCore_Core;
 TensorCore_Python_SOURCE_DIR:STATIC=/mnt/d/Python_ver2/TensorCore_python_wsl2
 
 //Dependencies for the target
+tensor2_LIB_DEPENDS:STATIC=general;TensorCore_Core;
+
+//Dependencies for the target
 tensor_LIB_DEPENDS:STATIC=general;TensorCore_Core;
 
 

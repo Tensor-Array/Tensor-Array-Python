@@ -26,7 +26,7 @@
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/ContinuousCoverage.dir
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/ContinuousMemCheck.dir
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/ContinuousSubmit.dir
-/mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/tensor.dir
+/mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/tensor2.dir
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/package.dir
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/package_source.dir
 /mnt/d/Python_ver2/TensorCore_python_wsl2/build/CMakeFiles/test.dir

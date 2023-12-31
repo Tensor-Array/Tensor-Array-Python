@@ -9,27 +9,27 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
 include(CTest)
 enable_testing()
 
-add_library(tensor SHARED include/tensor_bind.cc)
+add_library(tensor2 SHARED include/tensor_bind.cc)
 
 target_include_directories(
-    tensor
+    tensor2
     PRIVATE "${CMAKE_CURRENT_LIST_DIR}/.venv/lib/python3.10/site-packages/pybind11/include"
     PRIVATE "/mnt/d/C++_ver2/TensorMain_wsl2/src"
     PRIVATE ${Python_INCLUDE_DIRS}
 )
 
-SET_TARGET_PROPERTIES(tensor PROPERTIES PREFIX "")
+SET_TARGET_PROPERTIES(tensor2 PROPERTIES PREFIX "")
 
 target_link_directories(
-    tensor
+    tensor2
     PRIVATE "/mnt/d/C++_ver2/TensorMain_wsl2/lib"
 )
 
-target_link_libraries(tensor TensorCore_Core)
+target_link_libraries(tensor2 TensorCore_Core)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-install(TARGETS tensor LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+install(TARGETS tensor2 LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 endif()
