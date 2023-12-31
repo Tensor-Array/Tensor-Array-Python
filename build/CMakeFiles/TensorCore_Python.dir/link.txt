@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g -shared -Wl,-soname,libTensorCore_Python.so -o ../lib/libTensorCore_Python.so CMakeFiles/TensorCore_Python.dir/src/tensor_bind.cc.o   -L/mnt/d/C++_ver2/TensorMain_wsl2/lib  -Wl,-rpath,/mnt/d/C++_ver2/TensorMain_wsl2/lib: -lTensorCore_Core 

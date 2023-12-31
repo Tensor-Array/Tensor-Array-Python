@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/d/Python_ver2/TensorCore_python_wsl2/build",
+  "command": "/usr/bin/c++ -Dtensor_EXPORTS -I/mnt/d/Python_ver2/TensorCore_python_wsl2/.venv/lib/python3.10/site-packages/pybind11/include -I/mnt/d/C++_ver2/TensorMain_wsl2/src -I/usr/include/python3.10 -g -fPIC -o CMakeFiles/tensor.dir/src/tensor_bind.cc.o -c /mnt/d/Python_ver2/TensorCore_python_wsl2/src/tensor_bind.cc",
+  "file": "/mnt/d/Python_ver2/TensorCore_python_wsl2/src/tensor_bind.cc"
+}
+]
