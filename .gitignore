@@ -4,3 +4,4 @@ CMakeLists.txt
 build/
 bin/
 temp/
+pyproject.toml
