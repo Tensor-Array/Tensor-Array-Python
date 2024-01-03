@@ -1,9 +1,11 @@
 #include <tensor-array/core/tensor.hh>
+#include <tensor-array/core/data_type_wrapper.hh>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/operators.h>
 
 using namespace tensor_array::value;
+using namespace tensor_array::datatype;
 
 template <typename T>
 TensorBase convert_numpy_to_tensor_base(pybind11::array_t<T> py_buf)
@@ -20,12 +22,22 @@ TensorBase convert_numpy_to_tensor_base(pybind11::array_t<T> py_buf)
 			return static_cast<unsigned int>(dim);
 		}
 	);
+	warp_type(warp_type(typeid(T)));
 	return TensorBase(typeid(T), shape_vec, info.ptr);
+}
+
+pybind11::dtype get_py_type(const std::type_info& info)
+{
+	if (info == typeid(bool))
+		return pybind11::dtype::of<bool>();
+	if (info == typeid(float))
+		return pybind11::dtype::of<float>();
+	throw std::exception();
 }
 
 pybind11::array convert_tensor_to_numpy(const Tensor& tensor)
 {
-	const TensorBase& base_tensor = tensor.get_buffer();
+	const TensorBase& base_tensor = tensor.get_buffer().change_device({tensor_array::devices::CPU, 0});
 	std::vector<pybind11::size_t> shape_vec(base_tensor.shape().size());
 	std::transform
 	(
@@ -37,8 +49,9 @@ pybind11::array convert_tensor_to_numpy(const Tensor& tensor)
 			return static_cast<pybind11::size_t>(dim);
 		}
 	);
-	pybind11::array arr = pybind11::array();
-	return arr;
+	auto ty0 = pybind11::detail::get_type_info(base_tensor.type());
+	pybind11::dtype ty1 = get_py_type(base_tensor.type());
+	return pybind11::array(ty1, shape_vec, base_tensor.data());
 }
 
 Tensor python_tuple_slice(const Tensor& t, pybind11::tuple tuple_slice)
@@ -107,15 +120,34 @@ std::size_t python_len(const Tensor& t)
 	return shape_list.size() != 0 ? shape_list.begin()[0]: 1U;
 }
 
-std::string tensor_to_string(const Tensor& t)
+pybind11::str tensor_to_string(const Tensor& t)
 {
-	std::ostringstream osstream;
-	osstream << t;
-	return osstream.str();
+	return pybind11::repr(convert_tensor_to_numpy(t));
+}
+
+Tensor tensor_cast_1(const Tensor& t, DataType dtype)
+{
+	return t.tensor_cast(warp_type(dtype));
 }
 
 PYBIND11_MODULE(tensor2, m)
 {
+	pybind11::enum_<DataType>(m, "DataType")
+		.value("BOOL", BOOL_DTYPE)
+		.value("S_INT_8", S_INT_8)
+		.value("S_INT_16", S_INT_16)
+		.value("S_INT_32", S_INT_32)
+		.value("S_INT_64", S_INT_64)
+		.value("FLOAT", FLOAT_DTYPE)
+		.value("DOUBLE", DOUBLE_DTYPE)
+		.value("HALF", HALF_DTYPE)
+		.value("BFLOAT16", BF16_DTYPE)
+		.value("U_INT_8", U_INT_8)
+		.value("U_INT_16", U_INT_16)
+		.value("U_INT_32", U_INT_32)
+		.value("U_INT_64", U_INT_64)
+		.export_values();
+
 	pybind11::class_<Tensor>(m, "Tensor")
 		.def(pybind11::init())
 		.def(pybind11::init(&convert_numpy_to_tensor_base<float>))
@@ -138,11 +170,22 @@ PYBIND11_MODULE(tensor2, m)
 		.def(hash(pybind11::self))
 		.def("transpose", &Tensor::transpose)
 		.def("calc_grad", &Tensor::calc_grad)
+		.def("sin", &Tensor::sin)
+		.def("sin", &Tensor::sin)
+		.def("cos", &Tensor::cos)
+		.def("tan", &Tensor::tan)
+		.def("sinh", &Tensor::sinh)
+		.def("cosh", &Tensor::cosh)
+		.def("tanh", &Tensor::tanh)
+		.def("log", &Tensor::log)
+		.def("clone", &Tensor::clone)
+		.def("cast", &tensor_cast_1)
 		.def("add", &add)
 		.def("multiply", &multiply)
 		.def("divide", &divide)
 		.def("matmul", &matmul)
 		.def("condition", &condition)
+		.def("numpy", &convert_tensor_to_numpy)
 		.def("__getitem__", &python_index)
 		.def("__getitem__", &python_slice)
 		.def("__getitem__", &python_tuple_slice)
