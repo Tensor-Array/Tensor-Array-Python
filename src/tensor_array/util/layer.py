@@ -1,20 +1,30 @@
 from collections import OrderedDict, namedtuple
 from typing import Union, Tuple, Any, Callable, Iterator, Set, Optional, overload, TypeVar, Mapping, Dict, List
 from typing import Any
-from ...tensor_array.core import tensor2 as t
+from tensor_array.core import tensor2 as t
 from .parameter import Parameter
 
 class Layer:
-    _layers = Dict[str, Optional['Layer']]
-    _parameters = Dict[str, Optional[Parameter]]
-    _tensors = Dict[str, Optional[t.Tensor]]
+    is_running: bool
+    _layers: Dict[str, Optional['Layer']]
+    _parameters: Dict[str, Optional[Parameter]]
+    _tensors: Dict[str, Optional[t.Tensor]]
 
     def __init__(self) -> None:
+        super().__setattr__('is_running', False)
         super().__setattr__('_layers', OrderedDict())
         super().__setattr__('_parameters', OrderedDict())
         super().__setattr__('_tensors', OrderedDict())
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
+        if not self.__dict__.get('is_running'):
+            self.init_value(args, kwds)
+        self.calculate(args, kwds)
+
+    def init_value(self, *args: Any, **kwds: Any) -> Any:
+        pass
+
+    def calculate(self, *args: Any, **kwds: Any) -> Any:
         pass
 
     def register_parameter(self, name: str, param: Optional[Parameter]) -> None:
