@@ -181,5 +181,6 @@ PYBIND11_MODULE(tensor2, m)
 		.def("__getitem__", &python_tuple_slice)
 		.def("__len__", &python_len)
 		.def("__matmul__", &matmul)
+		.def("__rmatmul__", &matmul)
 		.def("__repr__", &tensor_to_string);
 }

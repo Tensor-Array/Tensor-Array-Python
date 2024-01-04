@@ -6,6 +6,7 @@ t1 = t.Tensor([[1, 2, 3], [4, 5, 6]])
 t2 = t1.clone()
 print("tensor len", t1.__len__())
 print(t1)
+print(t1.__dir__())
 t1 = t1[::]
 print(t1)
 t1 = t1.transpose(0, 1)
