@@ -75,18 +75,7 @@ Tensor python_tuple_slice(const Tensor& t, pybind11::tuple tuple_slice)
 			}
 		);
 	}
-	
-	#ifdef __GNUC__
-	struct
-	{
-		const Tensor::Slice* it;
-		std::size_t sz;
-	} test;
-	test.it = t_slices.data();
-	test.sz = t_slices.size();
-	std::initializer_list<Tensor::Slice>& t_slice_list = reinterpret_cast<std::initializer_list<Tensor::Slice>&>(test);
-	#endif
-	return t[t_slice_list];
+	return t[tensor_array::wrapper::initializer_wrapper(t_slices.begin().operator->(), t_slices.end().operator->())];
 }
 
 Tensor python_slice(const Tensor& t, pybind11::slice py_slice)
