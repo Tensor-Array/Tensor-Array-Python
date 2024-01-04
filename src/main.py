@@ -1,4 +1,4 @@
-from TensorArray.core import tensor2 as t
+from tensor_array.core import tensor2 as t
 
 print("hello")
 
