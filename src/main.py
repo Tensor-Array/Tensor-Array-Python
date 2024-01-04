@@ -1,8 +1,8 @@
-from tensor_array.core import tensor2 as t
+from tensor_array.core import Tensor
 
 print("hello")
 
-t1 = t.Tensor([[1, 2, 3], [4, 5, 6]])
+t1 = Tensor([[1, 2, 3], [4, 5, 6]])
 t2 = t1.clone()
 print("tensor len", t1.__len__())
 print(t1)
