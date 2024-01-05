@@ -30,7 +30,7 @@ std::string tensor_to_string(const Tensor t)
 	return osstream.str();
 }
 
-PYBIND11_MODULE(tensor, m)
+PYBIND11_MODULE(tensor_bind, m)
 {
 	pybind11::class_<Tensor>(m, "TensorC")
 		.def(pybind11::init())
