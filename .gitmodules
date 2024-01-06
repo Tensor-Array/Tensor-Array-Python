@@ -1,0 +1,3 @@
+[submodule "tensor-array-repo/Tensor-Array"]
+	path = tensor-array-repo/Tensor-Array
+	url = https://github.com/Tensor-Array/Tensor-Array
