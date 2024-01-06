@@ -31,7 +31,7 @@ class Layer:
         super().__setattr__('is_running', True)
         return self.calculate(*args, **kwds)
 
-    def init_value(self, *args: Any, **kwds: Any) -> Any:
+    def init_value(self, *args: Tuple, **kwds: Tuple) -> None:
         pass
 
     def calculate(self, *args: Any, **kwds: Any) -> Any:
