@@ -23,17 +23,34 @@ TensorBase convert_numpy_to_tensor_base(pybind11::array_t<T> py_buf)
 			return static_cast<unsigned int>(dim);
 		}
 	);
-	warp_type(warp_type(typeid(T)));
-	return TensorBase(typeid(T), shape_vec, info.ptr);
+	return TensorBase(warp_type(warp_type(typeid(T))), shape_vec, info.ptr);
 }
 
 pybind11::dtype get_py_type(const std::type_info& info)
 {
+	if (info == typeid(std::int8_t))
+		return pybind11::dtype::of<std::int8_t>();
+	if (info == typeid(std::int16_t))
+		return pybind11::dtype::of<std::int16_t>();
+	if (info == typeid(std::int32_t))
+		return pybind11::dtype::of<std::int32_t>();
+	if (info == typeid(std::int64_t))
+		return pybind11::dtype::of<std::int64_t>();
+	if (info == typeid(std::uint8_t))
+		return pybind11::dtype::of<std::uint8_t>();
+	if (info == typeid(std::uint16_t))
+		return pybind11::dtype::of<std::uint16_t>();
+	if (info == typeid(std::uint32_t))
+		return pybind11::dtype::of<std::uint32_t>();
+	if (info == typeid(std::uint64_t))
+		return pybind11::dtype::of<std::uint64_t>();
 	if (info == typeid(bool))
 		return pybind11::dtype::of<bool>();
 	if (info == typeid(float))
 		return pybind11::dtype::of<float>();
-	throw std::exception();
+	if (info == typeid(double))
+		return pybind11::dtype::of<double>();
+	throw std::runtime_error("no dtype");
 }
 
 pybind11::array convert_tensor_to_numpy(const Tensor& self)
@@ -125,6 +142,11 @@ pybind11::tuple tensor_shape(const Tensor& self)
 	return pybind11::cast(std::vector(self.get_buffer().shape()));
 }
 
+DataType tensor_type(const Tensor& self)
+{
+	return warp_type(self.get_buffer().type());
+}
+
 Tensor tensor_copying(const Tensor& self)
 {
 	return self;
@@ -205,6 +227,7 @@ PYBIND11_MODULE(tensor2, m)
 		.def("condition", &condition)
 		.def("numpy", &convert_tensor_to_numpy)
 		.def("shape", &tensor_shape)
+		.def("dtype", &tensor_type)
 		.def("__getitem__", &python_index)
 		.def("__getitem__", &python_slice)
 		.def("__getitem__", &python_tuple_slice)

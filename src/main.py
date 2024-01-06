@@ -22,4 +22,5 @@ print(t1 != t3)
 
 layer1 = Linear(3)
 
-print(layer1(Tensor([[1, 2, 3], [4, 5, 6]])))
+result_layer_1 = layer1(Tensor([[1, 2, 3], [4, 5, 6]]))
+print(result_layer_1)
