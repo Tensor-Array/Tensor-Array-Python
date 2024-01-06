@@ -1,18 +1,22 @@
-from tensor_array.layers import Layer
-from tensor_array.layers import Parameter
+from .. import Layer
+from .. import Parameter
 from tensor_array.core import Tensor
+from tensor_array.core import zeros
 from typing import Any
 
 
 class Linear(Layer):
     def __init__(self, bias) -> None:
-        super(self)
+        super(Linear, self).__init__()
         self.bias_shape = bias
-        self.b = Parameter(Tensor(shape = (bias)))
+        self.b = Parameter(zeros(shape = (bias,)))
 
     def init_value(self, t):
-        self.w = Parameter(Tensor(shape = (t.shape(-1), self.bias_shape)))
+        self.w = Parameter(zeros(shape = (t.shape()[-1], self.bias_shape)))
     
     def calculate(self, t):
-        return self.w @ t + self.b
+        print("t", t)
+        print("w", self.w)
+        print("b", self.b)
+        return t @ self.w + self.b
         

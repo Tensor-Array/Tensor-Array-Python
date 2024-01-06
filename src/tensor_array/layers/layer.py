@@ -1,7 +1,7 @@
 from collections import OrderedDict, namedtuple
 from typing import Union, Tuple, Any, Callable, Iterator, Set, Optional, overload, TypeVar, Mapping, Dict, List
 from typing import Any
-from tensor_array.core import tensor2 as t
+from tensor_array.core import Tensor
 from .parameter import Parameter
 
 class Layer:
@@ -11,7 +11,7 @@ class Layer:
     is_running: bool
     _layers: Dict[str, Optional['Layer']]
     _parameters: Dict[str, Optional[Parameter]]
-    _tensors: Dict[str, Optional[t.Tensor]]
+    _tensors: Dict[str, Optional[Tensor]]
 
     def __init__(self) -> None:
         super().__setattr__('is_running', False)
@@ -20,10 +20,10 @@ class Layer:
         super().__setattr__('_tensors', OrderedDict())
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
-        if not super().__getattr__('is_running'):
-            self.init_value(args, kwds)
+        if not self.__dict__['is_running']:
+            self.init_value(*args, **kwds)
         super().__setattr__('is_running', True)
-        self.calculate(args, kwds)
+        self.calculate(*args, **kwds)
 
     def init_value(self, *args: Any, **kwds: Any) -> Any:
         pass
@@ -48,7 +48,7 @@ class Layer:
         else:
             self._parameters[name] = param
 
-    def register_tensor(self, name: str, param: Optional[t.Tensor]) -> None:
+    def register_tensor(self, name: str, param: Optional[Tensor]) -> None:
         if '_tensors' not in self.__dict__:
             raise AttributeError("cannot assign tensor before Module.__init__() call")
         elif not isinstance(name, str):
@@ -57,13 +57,13 @@ class Layer:
             raise KeyError("tensor name can't contain \".\"")
         elif name == '':
             raise KeyError("tensor name can't be empty string \"\"")
-        elif hasattr(self, name) and name not in self._parameters:
+        elif hasattr(self, name) and name not in self._tensors:
             raise KeyError(f"attribute '{name}' already exists")
-        elif not isinstance(param, t.Tensor) and param is not None:
+        elif not isinstance(param, Tensor) and param is not None:
             raise TypeError(f"cannot assign '{param}' object to parameter '{name}' "
                             "(tensor_array.core.tensor2.Tensor or None required)")
         else:
-            self._parameters[name] = param
+            self._tensors[name] = param
 
     def register_layer(self, name: str, layer: Optional['Layer']) -> None:
         if not isinstance(layer, Layer) and layer is not None:
@@ -97,7 +97,7 @@ class Layer:
                 raise AttributeError("cannot assign parameters before Layer.__init__() call")
             remove_from(self.__dict__, self._layers, self._tensors)
             self.register_parameter(__name, __value)
-        elif isinstance(__value, t.Tensor):
+        elif isinstance(__value, Tensor):
             if layers is None:
                 raise AttributeError("cannot assign layers before Layer.__init__() call")
             remove_from(self.__dict__, self._parameters, self._layers)
@@ -128,9 +128,9 @@ class Layer:
     def __delattr__(self, __name: str) -> None:
         if __name in self._parameters:
             del self._parameters[__name]
-        elif __name in self._buffers:
-            del self._buffers[__name]
-        elif __name in self._modules:
-            del self._modules[__name]
+        elif __name in self._tensors:
+            del self._tensors[__name]
+        elif __name in self._layers:
+            del self._layers[__name]
         else:
             super().__delattr__(__name)

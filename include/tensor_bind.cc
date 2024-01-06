@@ -3,6 +3,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/operators.h>
+#include <pybind11/stl.h>
 
 using namespace tensor_array::value;
 using namespace tensor_array::datatype;
@@ -35,9 +36,9 @@ pybind11::dtype get_py_type(const std::type_info& info)
 	throw std::exception();
 }
 
-pybind11::array convert_tensor_to_numpy(const Tensor& tensor)
+pybind11::array convert_tensor_to_numpy(const Tensor& self)
 {
-	const TensorBase& base_tensor = tensor.get_buffer().change_device({tensor_array::devices::CPU, 0});
+	const TensorBase& base_tensor = self.get_buffer().change_device({tensor_array::devices::CPU, 0});
 	std::vector<pybind11::size_t> shape_vec(base_tensor.shape().size());
 	std::transform
 	(
@@ -54,7 +55,7 @@ pybind11::array convert_tensor_to_numpy(const Tensor& tensor)
 	return pybind11::array(ty1, shape_vec, base_tensor.data());
 }
 
-Tensor python_tuple_slice(const Tensor& t, pybind11::tuple tuple_slice)
+Tensor python_tuple_slice(const Tensor& self, pybind11::tuple tuple_slice)
 {
 	std::vector<Tensor::Slice> t_slices;
 	for (size_t i = 0; i < tuple_slice.size(); i++)
@@ -62,7 +63,7 @@ Tensor python_tuple_slice(const Tensor& t, pybind11::tuple tuple_slice)
 		ssize_t start, stop, step;
 		ssize_t length;
 		pybind11::slice py_slice = tuple_slice[i].cast<pybind11::slice>();
-		if (!py_slice.compute(t.get_buffer().shape().begin()[i], &start, &stop, &step, &length))
+		if (!py_slice.compute(self.get_buffer().shape().begin()[i], &start, &stop, &step, &length))
 			throw std::runtime_error("Invalid slice");
 		t_slices.insert
 		(
@@ -75,17 +76,17 @@ Tensor python_tuple_slice(const Tensor& t, pybind11::tuple tuple_slice)
 			}
 		);
 	}
-	return t[tensor_array::wrapper::initializer_wrapper(t_slices.begin().operator->(), t_slices.end().operator->())];
+	return self[tensor_array::wrapper::initializer_wrapper(t_slices.begin().operator->(), t_slices.end().operator->())];
 }
 
-Tensor python_slice(const Tensor& t, pybind11::slice py_slice)
+Tensor python_slice(const Tensor& self, pybind11::slice py_slice)
 {
 	std::vector<Tensor::Slice> t_slices;
 	ssize_t start, stop, step;
 	ssize_t length;
-	if (!py_slice.compute(t.get_buffer().shape().begin()[0], &start, &stop, &step, &length))
+	if (!py_slice.compute(self.get_buffer().shape().begin()[0], &start, &stop, &step, &length))
 	throw std::runtime_error("Invalid slice");
-	return t
+	return self
 	[
 		{
 			Tensor::Slice
@@ -98,25 +99,43 @@ Tensor python_slice(const Tensor& t, pybind11::slice py_slice)
 	];
 }
 
-Tensor python_index(const Tensor& t, unsigned int i)
+Tensor python_index(const Tensor& self, unsigned int i)
 {
-	return t[i];
+	return self[i];
 }
 
-std::size_t python_len(const Tensor& t)
+std::size_t python_len(const Tensor& self)
 {
-	std::initializer_list<unsigned int> shape_list = t.get_buffer().shape();
+	std::initializer_list<unsigned int> shape_list = self.get_buffer().shape();
 	return shape_list.size() != 0 ? shape_list.begin()[0]: 1U;
 }
 
-pybind11::str tensor_to_string(const Tensor& t)
+pybind11::str tensor_to_string(const Tensor& self)
 {
-	return pybind11::repr(convert_tensor_to_numpy(t));
+	return pybind11::repr(convert_tensor_to_numpy(self));
 }
 
-Tensor tensor_cast_1(const Tensor& t, DataType dtype)
+Tensor tensor_cast_1(const Tensor& self, DataType dtype)
 {
-	return t.tensor_cast(warp_type(dtype));
+	return self.tensor_cast(warp_type(dtype));
+}
+
+pybind11::tuple tensor_shape(const Tensor& self)
+{
+	return pybind11::cast(std::vector(self.get_buffer().shape()));
+}
+
+Tensor tensor_copying(const Tensor& self)
+{
+	return self;
+}
+
+Tensor py_zeros(pybind11::tuple shape_tuple, DataType dtype)
+{
+	std::vector<unsigned int> shape_vec;
+	for (auto& it: shape_tuple)
+		shape_vec.push_back(it.cast<unsigned int>());
+	return TensorBase(warp_type(dtype), shape_vec);
 }
 
 PYBIND11_MODULE(tensor2, m)
@@ -136,9 +155,18 @@ PYBIND11_MODULE(tensor2, m)
 		.value("U_INT_32", U_INT_32)
 		.value("U_INT_64", U_INT_64)
 		.export_values();
+	
+	m.def
+	(
+		"zeros",
+		&py_zeros,
+		pybind11::arg("shape"),
+		pybind11::arg("dtype") = S_INT_32
+	);
 
 	pybind11::class_<Tensor>(m, "Tensor")
 		.def(pybind11::init())
+		.def(pybind11::init(&tensor_copying))
 		.def(pybind11::init(&convert_numpy_to_tensor_base<float>))
 		.def(pybind11::self + pybind11::self)
 		.def(pybind11::self - pybind11::self)
@@ -176,11 +204,13 @@ PYBIND11_MODULE(tensor2, m)
 		.def("matmul", &matmul)
 		.def("condition", &condition)
 		.def("numpy", &convert_tensor_to_numpy)
+		.def("shape", &tensor_shape)
 		.def("__getitem__", &python_index)
 		.def("__getitem__", &python_slice)
 		.def("__getitem__", &python_tuple_slice)
 		.def("__len__", &python_len)
 		.def("__matmul__", &matmul)
 		.def("__rmatmul__", &matmul)
-		.def("__repr__", &tensor_to_string);
+		.def("__repr__", &tensor_to_string)
+		.def("__copy__", &tensor_copying);
 }
