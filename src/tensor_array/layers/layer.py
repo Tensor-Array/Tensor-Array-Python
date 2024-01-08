@@ -21,17 +21,17 @@ class Layer:
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         if not self.__dict__['is_running']:
-            list_arg = ((t.shape(), t.dtype()) for t in args if isinstance(t, Tensor))
+            list_arg = (t.shape() for t in args if isinstance(t, Tensor))
             dict_kwargs = {
-                key: (val.shape(), val.dtype())
+                key: val.shape()
                 for key, val in kwds
                 if isinstance(val, Tensor)
             }
-            self.init_value(*list_arg, **dict_kwargs)
+            self.layer_init(*list_arg, **dict_kwargs)
         super().__setattr__('is_running', True)
         return self.calculate(*args, **kwds)
 
-    def init_value(self, *args: Tuple, **kwds: Tuple) -> None:
+    def layer_init(self, *args: Tuple, **kwds: Tuple) -> None:
         pass
 
     def calculate(self, *args: Any, **kwds: Any) -> Any:
