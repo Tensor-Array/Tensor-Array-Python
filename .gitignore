@@ -6,3 +6,5 @@ bin/
 temp/
 pyproject.toml
 __pycache__/
+src/*.egg-info/*
+dist/
