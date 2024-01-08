@@ -2,10 +2,11 @@ from typing import Any
 from .. import Layer
 from ..util import Linear
 from tensor_array.core import Tensor
+from tensor_array.activation import softmax
 
 def scaled_dot_product_attention(q, k, v, mask = None):
     attn_scores = q @ k.transpose(len(k.shape()) - 2, len(k.shape()) - 1)
-    attn_probs = SoftMax(attn_scores, len(attn_scores.shape()) - 1)
+    attn_probs = softmax(attn_scores, len(attn_scores.shape()) - 1)
     return attn_probs @ v
 
 class MultiheadAttention(Layer):

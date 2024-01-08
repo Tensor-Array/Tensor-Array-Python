@@ -1,6 +1,7 @@
 from typing import Any
 from .. import Layer
 from .attention import MultiheadAttention
+from tensor_array.activation import relu
 from ..util import Sequential
 from ..util import Linear
 from ..util import Activation
@@ -9,7 +10,7 @@ class TransformerEncoderImpl(Layer):
     def __init__(self, d_model, n_head, ff_size) -> None:
         self.feed_forward = Sequential([
             Linear(ff_size),
-            Activation(ReLU),
+            Activation(relu),
             Linear(d_model)
         ])
         self.multihead_attn = MultiheadAttention(d_model, n_head)
