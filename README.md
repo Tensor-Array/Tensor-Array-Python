@@ -1,4 +1,4 @@
-# Tensor-Array-Python
+# Tensor Array Python
 [![pypi](https://img.shields.io/pypi/v/TensorArray)](https://pypi.org/project/TensorArray/)
 [![status](https://img.shields.io/pypi/status/TensorArray)](https://pypi.org/project/TensorArray/)
 [![python](https://img.shields.io/pypi/pyversions/TensorArray)](https://pypi.org/project/TensorArray/)
