@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/.venv/lib/python3.10/site-packages/pybind11/include/**",
+                "/usr/include/python3.10/**",
+                "${workspaceFolder}/tensor-array-repo/Tensor-Array/src/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++"
+        }
+    ],
+    "version": 4
+}
