@@ -4,20 +4,31 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "TensorArray"
-version = "0.0.1a"
+version = "0.0.1a01"
 authors = [
-  { name="TensorArray-Creators", email="noob_taken@outlook.com" },
+  { name="TensorArray-Creators" },
 ]
 description = "A machine learning package"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
+keywords = ["tensor", "array", "TensorArray", "machine learning", "deep learning"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 2 - Pre-Alpha",
+
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+
     "License :: OSI Approved :: MIT License",
+
     "Environment :: GPU :: NVIDIA CUDA :: 12",
+    
 ]
 
 [project.urls]
-Homepage = "https://github.com/BigNoobWasTaken/TensorArray-Python"
-Issues = "https://github.com/BigNoobWasTaken/TensorArray-Python/issues"
+Homepage = "https://github.com/Tensor-Array/Tensor-Array-Python"
+Issues = "https://github.com/Tensor-Array/Tensor-Array-Python/issues"
+Repository = "https://github.com/Tensor-Array/Tensor-Array-Python.git"
