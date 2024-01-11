@@ -5,3 +5,4 @@ temp/
 __pycache__/
 *.egg-info/*
 dist/
+*so

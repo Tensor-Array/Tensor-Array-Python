@@ -130,11 +130,11 @@ def main():
     
     setup(
         name = "TensorArray",
-        version = "0.0.1a02",
+        version = "0.0.1a2",
         description = "A machine learning package",
         long_description=long_description,
         ext_modules=[
-            CMakeExtension("tensor_array")
+            CMakeExtension("tensor2")
         ],
         authors = "TensorArray-Creators",
         url= "https://github.com/Tensor-Array/Tensor-Array-Python",
