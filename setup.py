@@ -15,7 +15,6 @@ PLAT_TO_CMAKE = {
     "win-arm64": "ARM64",
 }
 
-cwd = os.path.dirname(os.path.abspath(__file__))
 
 # A CMakeExtension needs a sourcedir instead of a file list.
 # The name must be the _single_ output extension from the CMake build.
@@ -123,6 +122,8 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
 
+cwd = os.path.dirname(os.path.abspath(__file__))
+
 def main():
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
@@ -132,10 +133,12 @@ def main():
         version = "0.0.1a02",
         description = "A machine learning package",
         long_description=long_description,
-        ext_modules=[CMakeExtension('tensor_array')],
+        ext_modules=[
+            CMakeExtension("tensor_array")
+        ],
         authors = "TensorArray-Creators",
         url= "https://github.com/Tensor-Array/Tensor-Array-Python",
-        packages=find_packages(exclude=("tests.*", "tests",)),
+        packages=find_packages(),
         classifiers = [
             "Development Status :: 2 - Pre-Alpha",
 
@@ -152,7 +155,7 @@ def main():
         ],
         license="MIT",
         cmdclass={
-            'build_ext': CMakeBuild
+            "build_ext": CMakeBuild
         },
     )
 
