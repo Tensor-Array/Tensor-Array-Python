@@ -3,5 +3,5 @@ build/
 bin/
 temp/
 __pycache__/
-*/*.egg-info/*
+*.egg-info/*
 dist/
