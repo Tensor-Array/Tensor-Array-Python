@@ -12,7 +12,7 @@ enable_testing()
 
 add_subdirectory("third_party/pybind11" EXCLUDE_FROM_ALL)
 add_subdirectory("tensor-array-repo/Tensor-Array" EXCLUDE_FROM_ALL)
-add_library(tensor2 SHARED scripts/cpp/tensor_bind.cc)
+add_library(tensor2 SHARED src/tensor_array/_core/tensor_bind.cc)
 
 target_include_directories(
     tensor2
