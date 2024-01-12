@@ -122,23 +122,26 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
 
-cwd = os.path.dirname(os.path.abspath(__file__))
-
 def main():
+    cwd = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
     
+    packages = find_packages("src")
+
+    print(packages)
+
     setup(
         name = "TensorArray",
-        version = "0.0.1a2",
+        version = "0.0.1a3",
         description = "A machine learning package",
         long_description=long_description,
-        ext_modules=[
-            CMakeExtension("tensor2")
-        ],
         authors = "TensorArray-Creators",
         url= "https://github.com/Tensor-Array/Tensor-Array-Python",
-        packages=find_packages(),
+        packages=packages,
+        ext_modules=[
+            CMakeExtension("tensor_array/core/tensor2")
+        ],
         classifiers = [
             "Development Status :: 2 - Pre-Alpha",
 
@@ -157,6 +160,11 @@ def main():
         cmdclass={
             "build_ext": CMakeBuild
         },
+        package_dir={
+            "": "src",
+            "tests": "tests"
+        },
+        python_requires=">=3.8",
     )
 
 if __name__ == "__main__":
