@@ -13,13 +13,13 @@ pybind11_add_module(tensor2 SHARED src/tensor_array/_core/tensor_bind.cc)
 
 target_include_directories(
     tensor2
-    PRIVATE "${CMAKE_CURRENT_LIST_DIR}/tensor-array-repo/Tensor-Array/src"
-    PRIVATE ${Python_INCLUDE_DIRS}
+    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/tensor-array-repo/Tensor-Array/src"
+    INTERFACE ${Python_INCLUDE_DIRS}
 )
 
 SET_TARGET_PROPERTIES(tensor2 PROPERTIES PREFIX "")
 
-target_link_libraries(tensor2 PRIVATE TensorArray::Core)
+target_link_libraries(tensor2 PUBLIC TensorArray::Core)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
