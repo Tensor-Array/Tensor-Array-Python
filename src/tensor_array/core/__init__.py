@@ -1,3 +1,4 @@
-from tensor_array.core.tensor2 import Tensor
-from tensor_array.core.tensor2 import zeros
-from tensor_array.core.tensor2 import DataType
+from .tensor import Tensor
+from .constants import *
+from .datatypes import DataTypes
+from .operator import *

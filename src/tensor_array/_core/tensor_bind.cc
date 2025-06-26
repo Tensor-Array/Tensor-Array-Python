@@ -186,9 +186,46 @@ PYBIND11_MODULE(tensor2, m)
 		pybind11::arg("dtype") = S_INT_32
 	);
 
+	m.def(
+		"add",
+		&tensor_array::value::add,
+		pybind11::arg("value_1"),
+		pybind11::arg("value_2")
+	);
+
+	m.def(
+		"multiply",
+		&tensor_array::value::multiply,
+		pybind11::arg("value_1"),
+		pybind11::arg("value_2")
+	);
+
+	m.def(
+		"divide",
+		&tensor_array::value::divide,
+		pybind11::arg("value_1"),
+		pybind11::arg("value_2")
+	);
+	
+	m.def(
+		"matmul",
+		&tensor_array::value::matmul,
+		pybind11::arg("value_1"),
+		pybind11::arg("value_2")
+	);
+
+	m.def(
+		"condition",
+		&tensor_array::value::condition,
+		pybind11::arg("condition_value"),
+		pybind11::arg("value_if_true"),
+		pybind11::arg("value_if_false")
+	);
+
 	pybind11::class_<Tensor>(m, "Tensor")
 		.def(pybind11::init())
 		.def(pybind11::init(&tensor_copying))
+		.def(pybind11::init(&convert_numpy_to_tensor_base<int>))
 		.def(pybind11::init(&convert_numpy_to_tensor_base<float>))
 		.def(pybind11::self + pybind11::self)
 		.def(pybind11::self - pybind11::self)
@@ -207,24 +244,18 @@ PYBIND11_MODULE(tensor2, m)
 		.def(+pybind11::self)
 		.def(-pybind11::self)
 		.def(hash(pybind11::self))
-		.def("transpose", &Tensor::transpose)
-		.def("calc_grad", &Tensor::calc_grad)
-		.def("get_grad", &Tensor::get_grad)
-		.def("sin", &Tensor::sin)
-		.def("sin", &Tensor::sin)
-		.def("cos", &Tensor::cos)
-		.def("tan", &Tensor::tan)
-		.def("sinh", &Tensor::sinh)
-		.def("cosh", &Tensor::cosh)
-		.def("tanh", &Tensor::tanh)
-		.def("log", &Tensor::log)
-		.def("clone", &Tensor::clone)
+		.def("transpose", &tensor_array::value::Tensor::transpose)
+		.def("calc_grad", &tensor_array::value::Tensor::calc_grad)
+		.def("get_grad", &tensor_array::value::Tensor::get_grad)
+		.def("sin", &tensor_array::value::Tensor::sin)
+		.def("cos", &tensor_array::value::Tensor::cos)
+		.def("tan", &tensor_array::value::Tensor::tan)
+		.def("sinh", &tensor_array::value::Tensor::sinh)
+		.def("cosh", &tensor_array::value::Tensor::cosh)
+		.def("tanh", &tensor_array::value::Tensor::tanh)
+		.def("log", &tensor_array::value::Tensor::log)
+		.def("clone", &tensor_array::value::Tensor::clone)
 		.def("cast", &tensor_cast_1)
-		.def("add", &add)
-		.def("multiply", &multiply)
-		.def("divide", &divide)
-		.def("matmul", &matmul)
-		.def("condition", &condition)
 		.def("numpy", &convert_tensor_to_numpy)
 		.def("shape", &tensor_shape)
 		.def("dtype", &tensor_type)
@@ -232,8 +263,8 @@ PYBIND11_MODULE(tensor2, m)
 		.def("__getitem__", &python_slice)
 		.def("__getitem__", &python_tuple_slice)
 		.def("__len__", &python_len)
-		.def("__matmul__", &matmul)
-		.def("__rmatmul__", &matmul)
+		.def("__matmul__", &tensor_array::value::matmul)
+		.def("__rmatmul__", &tensor_array::value::matmul)
 		.def("__repr__", &tensor_to_string)
 		.def("__copy__", &tensor_copying);
 }
