@@ -1,4 +1,4 @@
-from tensor_array.core.tensor2 import zeros as zerosWrapper
+from .tensor2 import zeros as zerosWrapper
 from .tensor import Tensor
 from .datatypes import DataTypes
 

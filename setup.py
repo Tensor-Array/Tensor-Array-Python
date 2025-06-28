@@ -127,13 +127,13 @@ def main():
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
     
-    packages = find_packages("src")
+    packages = find_packages("")
 
     print(packages)
 
     setup(
         name = "TensorArray",
-        version = "0.0.1a3",
+        version = "0.0.3",
         description = "A machine learning package",
         long_description=long_description,
         authors = "TensorArray-Creators",

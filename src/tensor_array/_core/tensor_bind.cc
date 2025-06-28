@@ -7,6 +7,7 @@
 
 using namespace tensor_array::value;
 using namespace tensor_array::datatype;
+using namespace tensor_array::wrapper;
 
 template <typename T>
 TensorBase convert_numpy_to_tensor_base(pybind11::array_t<T> py_buf)
@@ -93,7 +94,7 @@ Tensor python_tuple_slice(const Tensor& self, pybind11::tuple tuple_slice)
 			}
 		);
 	}
-	return self[tensor_array::wrapper::initializer_wrapper(t_slices.begin().operator->(), t_slices.end().operator->())];
+	return self[initializer_wrapper<Tensor::Slice>(t_slices.begin().operator->(), t_slices.end().operator->())];
 }
 
 Tensor python_slice(const Tensor& self, pybind11::slice py_slice)
@@ -139,7 +140,7 @@ Tensor tensor_cast_1(const Tensor& self, DataType dtype)
 
 pybind11::tuple tensor_shape(const Tensor& self)
 {
-	return pybind11::cast(std::vector(self.get_buffer().shape()));
+	return pybind11::cast(std::vector<unsigned int>(self.get_buffer().shape()));
 }
 
 DataType tensor_type(const Tensor& self)

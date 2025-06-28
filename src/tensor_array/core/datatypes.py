@@ -1,4 +1,4 @@
-from tensor_array.core.tensor2 import DataType as DataTypeWrapper
+from .tensor2 import DataType as DataTypeWrapper
 from enum import Enum
 
 class DataTypes(Enum):

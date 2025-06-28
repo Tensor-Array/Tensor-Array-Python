@@ -1,9 +1,9 @@
 from .tensor import Tensor
-from tensor_array.core.tensor2 import add as addWrapper
-from tensor_array.core.tensor2 import multiply as multiplyWrapper
-from tensor_array.core.tensor2 import divide as divideWrapper
-from tensor_array.core.tensor2 import matmul as matmulWrapper
-from tensor_array.core.tensor2 import condition as conditionWrapper
+from .tensor2 import add as addWrapper
+from .tensor2 import multiply as multiplyWrapper
+from .tensor2 import divide as divideWrapper
+from .tensor2 import matmul as matmulWrapper
+from .tensor2 import condition as conditionWrapper
 
 def add(value_1 : Tensor, value_2 : Tensor):
     return addWrapper(value_1, value_2)

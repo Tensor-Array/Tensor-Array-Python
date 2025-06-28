@@ -1,4 +1,4 @@
-from tensor_array.core.tensor2 import Tensor as TensorWrapper
+from .tensor2 import Tensor as TensorWrapper
 from .datatypes import DataTypes
 
 class Tensor(TensorWrapper):
