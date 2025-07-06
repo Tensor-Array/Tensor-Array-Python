@@ -39,7 +39,12 @@ jobs:
         run: |
           chmod +x ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
           ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
-
+          
+      - name: Install Build
+        run: |
+          # NOTE: put your own distribution build steps here.
+          python -m pip install build
+          
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.0.1
         with:
