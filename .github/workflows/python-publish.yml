@@ -31,8 +31,8 @@ jobs:
         temp: ${{ runner.temp }}
         cuda: '12.9'
       run: |
-        chmod +x ${{github.workspace}}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
-        ${{github.workspace}}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+        chmod +x ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+        ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
       shell: bash
     - name: Install dependencies
       run: |
