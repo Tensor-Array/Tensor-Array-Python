@@ -39,6 +39,7 @@ jobs:
         run: |
           chmod +x ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
           ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+        shell: bash
           
       - name: Install Build
         run: |
