@@ -40,11 +40,11 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.0.1
         env:
-          CIBW_BEFORE_BUILD_LINUX: "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh && {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
+          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8"
         with:
-           package-dir: .
-           output-dir: wheelhouse
-           config-file: "{package}/pyproject.toml"
+          package-dir: .
+          output-dir: wheelhouse
+          config-file: "{package}/pyproject.toml"
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
