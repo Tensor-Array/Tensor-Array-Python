@@ -37,20 +37,21 @@ jobs:
           temp: ${{ runner.temp }}
           cuda: '12.9'
         run: |
-          chmod +x ${{ github.workspace }}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
-          ${{ github.workspace }}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+          chmod +x ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+          ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
 
-      - name: Build release distributions
-        run: |
-          # NOTE: put your own distribution build steps here.
-          python -m pip install build
-          python -m build
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v3.0.1
+        with:
+           package-dir: .
+           output-dir: wheelhouse
+           config-file: ./pyproject.toml
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
           name: release-dists
-          path: dist/
+          path: wheelhouse/
 
   pypi-publish:
     runs-on: ubuntu-latest
@@ -77,12 +78,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-dists
-          path: dist/
+          path: wheelhouse/
 
       - name: Publish release distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: dist/
+          packages-dir: wheelhouse/
 
   testpypi-publish:
     runs-on: ubuntu-latest
@@ -109,11 +110,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-dists
-          path: dist/
+          path: wheelhouse/
 
       - name: Publish release distributions to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          packages-dir: dist/
+          packages-dir: wheelhouse/
 
