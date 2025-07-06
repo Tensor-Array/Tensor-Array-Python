@@ -31,15 +31,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-
-      - name: Run CUDA bash shell
-        env:
-          temp: ${{ runner.temp }}
-          cuda: '12.9'
-        run: |
-          chmod +x ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
-          ./tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
-        shell: bash
           
       - name: Install Build
         run: |
@@ -48,10 +39,12 @@ jobs:
           
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.0.1
+        env:
+          CIBW_BEFORE_BUILD_LINUX: "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh && {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
         with:
            package-dir: .
            output-dir: wheelhouse
-           config-file: ./pyproject.toml
+           config-file: "{package}/pyproject.toml"
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
