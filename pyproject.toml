@@ -6,10 +6,10 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[tools.cibuildwheel]
+[tool.cibuildwheel]
 xbuild-tools = ["cmake", "ninja"]
 
-[tools.cibuildwheel.linux]
+[tool.cibuildwheel.linux]
 before-all = [
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh",
   "{package}/tensor-array-repo/Tensor-Array/scripts/actions --cuda=12.9 --temp=/tmp/cuda-temp"
