@@ -150,7 +150,7 @@ DataType tensor_type(const Tensor& self)
 
 Tensor tensor_copying(const Tensor& self)
 {
-	return self;
+	return Tensor(self);
 }
 
 Tensor py_zeros(pybind11::tuple shape_tuple, DataType dtype)
@@ -159,6 +159,14 @@ Tensor py_zeros(pybind11::tuple shape_tuple, DataType dtype)
 	for (auto& it: shape_tuple)
 		shape_vec.push_back(it.cast<unsigned int>());
 	return TensorBase(warp_type(dtype), shape_vec);
+}
+
+Tensor py_rand(pybind11::tuple shape_tuple, unsigned int seed = std::rand())
+{
+	std::vector<unsigned int> shape_vec;
+	for (auto& it: shape_tuple)
+		shape_vec.push_back(it.cast<unsigned int>());
+	return tensor_rand(shape_vec, seed);
 }
 
 PYBIND11_MODULE(tensor2, m)
@@ -188,6 +196,13 @@ PYBIND11_MODULE(tensor2, m)
 	);
 
 	m.def(
+		"rand",
+		&py_rand,
+		pybind11::arg("shape"),
+		pybind11::arg("seed") = std::rand()
+	);
+
+	m.def(
 		"add",
 		&tensor_array::value::add,
 		pybind11::arg("value_1"),
@@ -204,6 +219,13 @@ PYBIND11_MODULE(tensor2, m)
 	m.def(
 		"divide",
 		&tensor_array::value::divide,
+		pybind11::arg("value_1"),
+		pybind11::arg("value_2")
+	);
+
+	m.def(
+		"power",
+		&tensor_array::value::power,
 		pybind11::arg("value_1"),
 		pybind11::arg("value_2")
 	);
@@ -245,17 +267,17 @@ PYBIND11_MODULE(tensor2, m)
 		.def(+pybind11::self)
 		.def(-pybind11::self)
 		.def(hash(pybind11::self))
-		.def("transpose", &tensor_array::value::Tensor::transpose)
-		.def("calc_grad", &tensor_array::value::Tensor::calc_grad)
-		.def("get_grad", &tensor_array::value::Tensor::get_grad)
-		.def("sin", &tensor_array::value::Tensor::sin)
-		.def("cos", &tensor_array::value::Tensor::cos)
-		.def("tan", &tensor_array::value::Tensor::tan)
-		.def("sinh", &tensor_array::value::Tensor::sinh)
-		.def("cosh", &tensor_array::value::Tensor::cosh)
-		.def("tanh", &tensor_array::value::Tensor::tanh)
-		.def("log", &tensor_array::value::Tensor::log)
-		.def("clone", &tensor_array::value::Tensor::clone)
+		.def("transpose", &Tensor::transpose)
+		.def("calc_grad", &Tensor::calc_grad)
+		.def("get_grad", &Tensor::get_grad)
+		.def("sin", &Tensor::sin)
+		.def("cos", &Tensor::cos)
+		.def("tan", &Tensor::tan)
+		.def("sinh", &Tensor::sinh)
+		.def("cosh", &Tensor::cosh)
+		.def("tanh", &Tensor::tanh)
+		.def("log", &Tensor::log)
+		.def("clone", &Tensor::clone)
 		.def("cast", &tensor_cast_1)
 		.def("numpy", &convert_tensor_to_numpy)
 		.def("shape", &tensor_shape)
@@ -264,8 +286,7 @@ PYBIND11_MODULE(tensor2, m)
 		.def("__getitem__", &python_slice)
 		.def("__getitem__", &python_tuple_slice)
 		.def("__len__", &python_len)
-		.def("__matmul__", &tensor_array::value::matmul)
-		.def("__rmatmul__", &tensor_array::value::matmul)
+		.def("__matmul__", &matmul)
 		.def("__repr__", &tensor_to_string)
 		.def("__copy__", &tensor_copying);
 }

@@ -127,17 +127,17 @@ def main():
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
     
-    packages = find_packages("")
+    packages = find_packages()
 
     print(packages)
 
     setup(
         name = "TensorArray",
-        version = "0.0.3",
+        version = "0.0.4",
         description = "A machine learning package",
         long_description=long_description,
-        authors = "TensorArray-Creators",
-        url= "https://github.com/Tensor-Array/Tensor-Array-Python",
+        author="TensorArray-Creators",
+        url="https://github.com/Tensor-Array/Tensor-Array-Python",
         packages=packages,
         ext_modules=[
             CMakeExtension("tensor_array/core/tensor2")
@@ -146,6 +146,7 @@ def main():
             "Development Status :: 2 - Pre-Alpha",
 
             "Programming Language :: Python :: 3",
+            "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
             "Programming Language :: Python :: 3.11",
@@ -162,6 +163,7 @@ def main():
         },
         package_dir={
             "": "src",
+            "pybind11": "third_party/pybind11/pybind11",
             "tests": "tests"
         },
         python_requires=">=3.8",

@@ -26,6 +26,14 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.x'
+    - name: Run CUDA bash shell
+      env:
+        temp: ${{ runner.temp }}
+        cuda: '12.9'
+      run: |
+        chmod +x ${{github.workspace}}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+        ${{github.workspace}}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh
+      shell: bash
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

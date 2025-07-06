@@ -1,12 +1,13 @@
 from tensor_array.core import Tensor
 from tensor_array.core import zeros
+from tensor_array.core import condition
 
-def relu(input):
+def relu(input: Tensor) -> Tensor:
     tensor_zeros = zeros(shape = input.shape(), dtype = input.dtype())
-    return (input > tensor_zeros).condition(input, tensor_zeros)
+    return condition(input > tensor_zeros, input, tensor_zeros)
 
-def sigmoid(input):
+def sigmoid(input: Tensor) -> Tensor:
     return input.sigmoid()
 
-def softmax(input, dim = 0):
-    return input
+def softmax(input: Tensor, dim: int = 0) -> Tensor:
+    return input.softmax(dim)

@@ -1,7 +1,16 @@
+"""
+# src/tensor_array/core/datatypes.py
+# This module defines an enumeration for various data types supported by the TensorArray library.
+# The DataTypes enum includes types such as BOOL, INT, FLOAT, DOUBLE, and others, which correspond to the data types used in tensors.
+"""
+
 from .tensor2 import DataType as DataTypeWrapper
 from enum import Enum
 
 class DataTypes(Enum):
+    """
+    Enum representing various data types supported by the TensorArray library.
+    """
     BOOL = DataTypeWrapper.BOOL
     S_INT_8 = DataTypeWrapper.S_INT_8
     S_INT_16 = DataTypeWrapper.S_INT_16
