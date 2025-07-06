@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18.0)
 
-project(TensorArray_Python VERSION 0.1.0 LANGUAGES C CXX)
+project(TensorArray_Python VERSION 0.1.0 LANGUAGES C CXX CUDA)
 
 include(CTest)
 enable_testing()
