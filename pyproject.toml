@@ -7,7 +7,8 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-environment = { cuda="12.9", temp="/tmp/cuda-temp", BUILD_WITH_CUDA=1 }
+environment = { cuda = "12.9", temp = "/tmp/cuda-temp" }
+container-engine = { name = "docker", create-args = ["--gpus", "all"] }
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
