@@ -11,6 +11,7 @@ xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
 before-all = [
+  "dnf install lsb_release -y",
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh",
   "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh --cuda=12.9 --temp=/tmp/cuda-temp"
 ]
