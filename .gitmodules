@@ -1,6 +1,3 @@
 [submodule "third_party/pybind11"]
 	path = third_party/pybind11
 	url = https://github.com/pybind/pybind11
-[submodule "tensor-array-repos/Tensor-Array"]
-	path = tensor-array-repos/Tensor-Array
-	url = https://github.com/Tensor-Array/Tensor-Array.git
