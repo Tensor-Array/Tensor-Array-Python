@@ -339,3 +339,12 @@ class Tensor(TensorWrapper):
             Tensor: A new tensor with the absolute values.
         """
         return super().__abs__()
+    
+    def _hash__(self) -> int:
+        """
+        Returns a hash value for the tensor.
+        Returns:
+            int: A hash value representing the tensor.
+        This method is useful for using tensors as keys in dictionaries or sets.
+        """
+        return super()._hash__()
