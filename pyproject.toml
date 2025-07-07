@@ -13,7 +13,7 @@ xbuild-tools = ["cmake", "ninja"]
 [tool.cibuildwheel.linux]
 before-all = [
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh",
-  "dnf -y install lsb-release wget",
+  "dnf -y install redhat-lsb-core wget",
   "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
