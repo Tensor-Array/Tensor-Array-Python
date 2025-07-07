@@ -7,7 +7,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-environment = {  cuda="12.9", temp="/tmp/cuda-temp", CMAKE_ARGS="-DCMAKE_C_COMPLIER=\\\"/usr/bin/gcc\\\" -DCMAKE_CXX_COMPLIER=\\\"/usr/bin/g++\\\" -DCMAKE_CUDA_COMPLIER=\\\"/usr/local/cuda-${cuda}/bin/nvcc\\\"" }
+environment = { cuda="12.9", temp="/tmp/cuda-temp", BUILD_WITH_CUDA=1 }
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
