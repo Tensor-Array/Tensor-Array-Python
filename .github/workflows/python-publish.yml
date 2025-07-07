@@ -39,9 +39,7 @@ jobs:
           
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.0.1
-        env:
-          cuda: "12.9"
-          temp: "/tmp/cuda-temp"
+        # env:
         with:
           package-dir: .
           output-dir: wheelhouse
