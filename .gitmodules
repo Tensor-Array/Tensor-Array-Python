@@ -2,5 +2,5 @@
 	path = third_party/pybind11
 	url = https://github.com/pybind/pybind11
 [submodule "Tensor-Array"]
-	path = Tensor-Array
+	path = tensor-array-repo/Tensor-Array
 	url = https://github.com/Tensor-Array/Tensor-Array.git
