@@ -1,7 +1,7 @@
-include README.md LICENSE tensor-array-repo/Tensor-Array/LICENSE third_party/pybind11/LICENSE
+include README.md LICENSE tensor-array-repos/Tensor-Array/LICENSE third_party/pybind11/LICENSE
 graft third_party/pybind11/include
 graft third_party/pybind11/tools
 graft third_party/pybind11/pybind11
-graft tensor-array-repo/Tensor-Array/src
+graft tensor-array-repos/Tensor-Array/src
 graft src
 global-include CMakeLists.txt *.cmake Config.cmake.in

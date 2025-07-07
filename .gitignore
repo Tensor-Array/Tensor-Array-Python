@@ -2,6 +2,10 @@
 build/
 bin/
 temp/
+wheelhouse/
+*.pyc
+*.pyo
+*.pyd
 __pycache__/
 *.egg-info/*
 */*.egg-info/*
