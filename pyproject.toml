@@ -7,19 +7,13 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-build = "cp38-*"
 environment = { cuda="12.9", temp="/tmp/cuda-temp" }
-manylinux-x86_64-image = "quay.io/pypa/manylinux_2_24_x86_64:latest"
-manylinux-i686-image = "quay.io/pypa/manylinux_2_24_i686:latest"
-manylinux-pypy_x86_64-image = "quay.io/pypa/manylinux_2_24_x86_64:latest"
-manylinux-aarch64-image = "quay.io/pypa/manylinux_2_24_aarch64:latest"
-manylinux-ppc64le-image = "quay.io/pypa/manylinux_2_24_ppc64le:latest"
-manylinux-s390x-image = "quay.io/pypa/manylinux_2_24_s390x:latest"
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
 before-all = [
-  "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh",
-  "bash -c {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
+  "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh",
+  "dnf -y install lsb-release wget",
+  "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
