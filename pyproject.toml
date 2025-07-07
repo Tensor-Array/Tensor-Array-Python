@@ -20,6 +20,6 @@ xbuild-tools = ["cmake", "ninja"]
 [tool.cibuildwheel.linux]
 before-all = [
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh",
-  "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
+  "bash -c {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
