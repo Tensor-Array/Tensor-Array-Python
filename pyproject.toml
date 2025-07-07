@@ -8,11 +8,12 @@ build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
 environment = { cuda="12.9", temp="/tmp/cuda-temp" }
+manylinux-x86_64-image = "manylinux_2_31"
+manylinux-i686-image = "manylinux_2_31"
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
 before-all = [
-  "dnf install redhat-lsb-core -y",
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh",
   "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-ubuntu.sh"
 ]
