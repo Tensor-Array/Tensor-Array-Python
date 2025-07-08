@@ -18,7 +18,7 @@ chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 echo "Installing required packages..."
 $USE_SUDO dnf -y install redhat-lsb-core wget
 echo "Running CUDA installation script..."
-tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
+. tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 
 # debugging output
 echo
