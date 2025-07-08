@@ -16,8 +16,8 @@ temp = "/tmp/cuda-temp"
 [tool.cibuildwheel.linux]
 before-all = [
   "chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh", 
-  "dnf remove gcc-toolset-14\\*",
-  "dnf -y install redhat-lsb-core wget gcc gcc-c++",
+  # "dnf remove gcc-toolset-14\\*",
+  "dnf -y install redhat-lsb-core wget gcc-toolset-12",
   ". tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
