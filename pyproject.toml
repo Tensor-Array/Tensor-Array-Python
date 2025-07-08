@@ -17,7 +17,7 @@ temp = "/tmp/cuda-temp"
 before-all = [
   "chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh", 
   "dnf -y install redhat-lsb-core wget",
-  "scl enable gcc-toolset-14",
+  "scl unload gcc-toolset-14",
   "scl enable gcc-toolset-12",
   ". tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
