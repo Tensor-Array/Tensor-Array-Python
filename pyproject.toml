@@ -19,7 +19,7 @@ LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
 # pyproject.toml
 [tool.cibuildwheel.config-settings]
 "cmake.args" = [
-    "-DUSE_CUDA=ON"
+    "-DUSE_CUDA=ON",
     "-DCMAKE_CUDA_COMPILER=\\\"which nvcc\\\""
 ]
 
