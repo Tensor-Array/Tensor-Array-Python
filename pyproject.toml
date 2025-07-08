@@ -1,16 +1,13 @@
 [build-system]
 requires = [
-  "setuptools",
+  "setuptools>=42",
   "ninja",
-  "cmake"
+  "cmake>=3.18,<3.29"
 ]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
 environment = { cuda = "12.9", temp = "/tmp/cuda-temp" }
-environment-pass = [
-  "CUDA_PATH"
-]
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
