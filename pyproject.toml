@@ -16,7 +16,7 @@ xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
 before-all = [
-  "chmod +x {package}/scripts/build-env/manylinux.sh", 
-  "{package}/scripts/build-env/manylinux.sh"
+  "chmod +x scripts/build-env/manylinux.sh", 
+  ". /scripts/build-env/manylinux.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
