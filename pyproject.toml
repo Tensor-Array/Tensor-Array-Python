@@ -9,11 +9,14 @@ build-backend = "setuptools.build_meta"
 [tool.cibuildwheel]
 environment-pass = ["CUDA_PATH"]
 environment.PATH = "${PATH}:${CUDA_PATH}/bin"
-environment.LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_PATH/lib:$CUDA_PATH/lib64"
+environment.LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
 environment.cuda = "12.9"
 environment.temp = "/tmp/cuda-temp"
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
-before-all = "{package}/scripts/build-env/manylinux.sh"
+before-all = [
+  "chmod +x {package}/scripts/build-env/manylinux.sh", 
+  "{package}/scripts/build-env/manylinux.sh"
+]
 xbuild-tools = ["cmake", "ninja", "nvcc"]
