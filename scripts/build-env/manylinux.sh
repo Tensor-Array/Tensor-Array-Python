@@ -16,7 +16,7 @@ cd ../..
 echo "Installing dependencies for building Tensor-Array on manylinux..."
 chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 echo "Installing required packages..."
-$USE_SUDO dnf -y install redhat-lsb-core wget
+$USE_SUDO yum install -y redhat-lsb-core wget
 echo "Running CUDA installation script..."
 tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 
