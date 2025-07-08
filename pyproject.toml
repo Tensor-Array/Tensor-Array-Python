@@ -19,4 +19,4 @@ before-all = [
   "chmod +x {package}/scripts/build-env/manylinux.sh", 
   "{package}/scripts/build-env/manylinux.sh"
 ]
-xbuild-tools = ["cmake", "ninja", "nvcc"]
+xbuild-tools = ["cmake", "ninja"]

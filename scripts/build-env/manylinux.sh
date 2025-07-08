@@ -20,6 +20,21 @@ $USE_SUDO dnf -y install redhat-lsb-core wget
 echo "Running CUDA installation script..."
 tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 
+# debugging output
+echo
+echo "------------------------------"
+echo
+echo "CUDA_PATH="
+echo "$CUDA_PATH"
+echo
+echo "PATH="
+echo "$PATH"
+echo "LD_LIBRARY_PATH="
+echo "$LD_LIBRARY_PATH"
+echo
+echo "------------------------------"
+echo
+
 # Check if nvcc is available
 echo "Checking for nvcc..."
 if ! command -v nvcc &> /dev/null; then
