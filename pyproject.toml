@@ -7,12 +7,20 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-environment.cuda = "12.9"
-environment.temp = "/tmp/cuda-temp"
-environment.CUDA_PATH = "/usr/local/cuda-${cuda}"
-environment.PATH = "${PATH}:${CUDA_PATH}/bin"
-environment.LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
 xbuild-tools = ["cmake", "ninja"]
+
+[tool.cibuildwheel.environment]
+cuda = "12.9"
+temp = "/tmp/cuda-temp"
+CUDA_PATH = "/usr/local/cuda-${cuda}"
+PATH = "${PATH}:${CUDA_PATH}/bin"
+LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
+
+# pyproject.toml
+[tool.cibuildwheel.config-settings]
+"cmake.args" = [
+    "-DUSE_CUDA=ON"
+]
 
 [tool.cibuildwheel.linux]
 before-all = [
