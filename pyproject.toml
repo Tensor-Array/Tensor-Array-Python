@@ -18,7 +18,7 @@ before-all = [
   "chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh", 
   "dnf remove gcc-toolset-14\\*",
   "dnf -y install redhat-lsb-core wget gcc-toolset-12",
-  "scl enable gcc-toolset-N bash",
+  "scl enable gcc-toolset-12 bash",
   ". tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
 xbuild-tools = ["cmake", "ninja"]
