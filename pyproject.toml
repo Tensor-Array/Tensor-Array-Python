@@ -14,7 +14,6 @@ xbuild-tools = ["cmake", "ninja"]
 before-all = [
   "chmod +x {package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh",
   "dnf -y install redhat-lsb-core wget",
-  "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh",
-  "ln -s cuda-${cuda} /usr/local/cuda"
+  "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
-xbuild-tools = ["cmake", "ninja"]
+xbuild-tools = ["cmake", "ninja", "nvcc"]
