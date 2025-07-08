@@ -124,9 +124,6 @@ class CMakeBuild(build_ext):
 
 def main():
     cwd = os.path.dirname(os.path.abspath(__file__))
-    subprocess.run(
-        ["nvcc", "--version"], cwd=cwd, check=True
-    )
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
     
