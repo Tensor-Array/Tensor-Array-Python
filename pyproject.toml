@@ -15,5 +15,5 @@ environment.temp = "/tmp/cuda-temp"
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
-before-all = "scripts/build-env/manylinux.sh"
+before-all = "{package}/scripts/build-env/manylinux.sh"
 xbuild-tools = ["cmake", "ninja", "nvcc"]
