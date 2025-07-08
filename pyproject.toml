@@ -8,6 +8,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
 environment = { cuda = "12.9", temp = "/tmp/cuda-temp" }
+environment-pass = [
+  "CUDA_PATH"
+]
 xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux]
@@ -16,4 +19,4 @@ before-all = [
   "dnf -y install redhat-lsb-core wget",
   "{package}/tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
 ]
-xbuild-tools = ["cmake", "ninja", "nvcc"]
+xbuild-tools = ["cmake", "ninja"]
