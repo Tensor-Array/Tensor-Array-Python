@@ -16,15 +16,6 @@ temp = "/tmp/cuda-temp"
 # PATH = "${PATH}:${CUDA_PATH}/bin"
 # LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
 
-# pyproject.toml
-[tool.cibuildwheel.config-settings]
-"cmake.args" = [
-    "-DUSE_CUDA=ON",
-    "-DCMAKE_C_COMPILER=\\\"/usr/bin/gcc\\\"",
-    "-DCMAKE_CUDA_COMPILER=\\\"/usr/bin/g++\\\"",
-    "-DCMAKE_CUDA_COMPILER=\\\"which nvcc\\\""
-]
-
 [tool.cibuildwheel.linux]
 before-all = [
   "chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh", 
