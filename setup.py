@@ -135,6 +135,8 @@ def main():
         name = "TensorArray",
         version = "0.0.4",
         description = "A machine learning package",
+        long_description= long_description,
+        long_description_content_type="text/markdown",
         author="TensorArray-Creators",
         url="https://github.com/Tensor-Array/Tensor-Array-Python",
         packages=packages,
