@@ -141,7 +141,7 @@ def main():
         url="https://github.com/Tensor-Array/Tensor-Array-Python",
         packages=packages,
         ext_modules=[
-            CMakeExtension("tensor_array/core/tensor2")
+            CMakeExtension("tensor2")
         ],
         classifiers = [
             "Development Status :: 2 - Pre-Alpha",
