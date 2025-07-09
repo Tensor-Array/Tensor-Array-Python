@@ -7,7 +7,14 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-xbuild-tools = ["cmake", "ninja"]
+xbuild-tools = [
+  "cmake",
+  "ninja"
+]
+skip = [
+  "pp*",
+  "*-musllinux-*",
+]
 # manylinux-x86_64-image = "manylinux2014"
 # manylinux-i686-image = "manylinux2014"
 # manylinux-pypy_x86_64-image = "manylinux2014"
@@ -34,4 +41,4 @@ cuda = "12.9"
 temp = "/tmp/cuda-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
 PATH = "${PATH}:${CUDA_PATH}/bin"
-LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
+LD_LIBRARY_PATH = "${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
