@@ -7,9 +7,9 @@ enable_testing()
 
 add_subdirectory("tensor-array-repo/Tensor-Array" EXCLUDE_FROM_ALL)
 
-find_package(Python3 COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 
-if(Python3_FOUND)
+if(Python_FOUND)
 add_subdirectory("third_party/pybind11" EXCLUDE_FROM_ALL)
 pybind11_add_module(tensor2 SHARED src/tensor_array/_core/tensor_bind.cc)
 
@@ -24,7 +24,7 @@ SET_TARGET_PROPERTIES(tensor2 PROPERTIES PREFIX "")
 target_link_libraries(tensor2 PUBLIC TensorArray::Core)
 
 else()
-    message(FATAL_ERROR "Python3 development files not found. Please install Python3 development package.")
+    message(FATAL_ERROR "Python development files not found. Please install Python development package.")
 endif()
 
 
