@@ -7,7 +7,7 @@ enable_testing()
 
 add_subdirectory("tensor-array-repo/Tensor-Array" EXCLUDE_FROM_ALL)
 
-find_package(Python COMPONENTS Interpreter Development.Module Development.Embed REQUIRED)
+find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
 if(Python_FOUND)
 add_subdirectory("third_party/pybind11" EXCLUDE_FROM_ALL)
