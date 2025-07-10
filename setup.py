@@ -53,9 +53,6 @@ def main():
             "tensor_array": 'src/tensor_array',
         },
         include_package_data=True,
-        package_data = {
-            "": ["tensor-array-repo/Tensor-Array/lib/*.so"],
-        },
         data_files= [
             ("tensor-array-repo/Tensor-Array/include", glob.glob(os.path.join("cpp", "include", "*.hh"))),
             ("tensor-array-repo/Tensor-Array/lib", glob.glob(os.path.join("cpp", "lib", "*.so"))),
