@@ -28,9 +28,6 @@ before-all = [
   "chmod +x scripts/build-env/manylinux.sh",
   "scripts/build-env/manylinux.sh"
 ]
-repair-wheel-command = [
-  "auditwheel repair --lib-sdir tensor-array-repo/Tensor-Array/lib -w {dest_dir} {wheel}",
-]
 
 [tool.cibuildwheel.linux.environment]
 cuda = "12.9"

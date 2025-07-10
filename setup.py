@@ -48,17 +48,13 @@ def main():
 
             "Environment :: GPU :: NVIDIA CUDA :: 12",
         ],
-        packages = find_packages() + ["tensor_array"],
-        package_dir={
-            "tensor_array": 'src/tensor_array',
+        packages = find_packages("src"),
+        package_dir = {
+            "": "src",
         },
-        include_package_data=True,
-        data_files= [
-            ("tensor-array-repo/Tensor-Array/include", glob.glob(os.path.join("cpp", "include", "*.hh"))),
-            ("tensor-array-repo/Tensor-Array/lib", glob.glob(os.path.join("cpp", "lib", "*.so"))),
-            ("tensor-array-repo/Tensor-Array/scripts", glob.glob(os.path.join("scripts", "*.sh"))),
-            ("scripts", glob.glob(os.path.join("scripts", "local", "*.sh"))),
-        ],
+        package_data = {
+            "tensor_array": ["*.so"]
+        },
         ext_modules = ext_modules,
         cmdclass = {
             "build_ext": build_ext,

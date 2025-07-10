@@ -1,0 +1,6 @@
+recursive-include scripts *.sh
+graft src
+graft cpp
+graft tensor-array-repo/Tensor-Array/lib
+graft tensor-array-repo/Tensor-Array/include
+prune tensor-array-repo/Tensor-Array/src
