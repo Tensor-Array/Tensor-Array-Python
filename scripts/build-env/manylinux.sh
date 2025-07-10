@@ -10,11 +10,11 @@ else
     USE_SUDO=
 fi
 
-cd ../..
+cd ${PWD}
 
 # Install dependencies for building Tensor-Array on manylinux
 echo "Installing dependencies for building Tensor-Array on manylinux..."
-chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
+chmod +x /tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh
 echo "Installing required packages..."
 $USE_SUDO yum install -y redhat-lsb-core wget
 echo "Running CUDA installation script..."
@@ -29,6 +29,7 @@ echo "$CUDA_PATH"
 echo
 echo "PATH="
 echo "$PATH"
+echo
 echo "LD_LIBRARY_PATH="
 echo "$LD_LIBRARY_PATH"
 echo
@@ -42,3 +43,28 @@ if ! command -v nvcc &> /dev/null; then
     exit 1
 fi
 echo "nvcc is available. Proceeding with the build environment setup."
+
+cd tensor-array-repo/Tensor-Array
+
+pip install "cmake>=3.18,<3.29"
+
+# Create build directory if it doesn't exist
+if [ ! -d "build" ]; then
+    echo "Creating build directory..."
+    mkdir build
+else
+    echo "Build directory already exists."
+fi
+# Change to the build directory
+cd build
+# Configure the build with CMake
+echo "Configuring the build with CMake..."
+cmake ..
+cmake --build .
+cmake --install .
+
+cd ..
+rm -rf build
+
+cd ../..
+

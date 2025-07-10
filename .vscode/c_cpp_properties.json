@@ -4,7 +4,6 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/third_party/pybind11/include/**",
                 "/usr/include/python3.*/**",
                 "${workspaceFolder}/tensor-array-repo/Tensor-Array/src/**"
             ],

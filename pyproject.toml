@@ -1,16 +1,11 @@
 [build-system]
 requires = [
   "setuptools>=42",
-  "ninja",
-  "cmake>=3.18,<3.29"
+  "pybind11>=2.6.0"
 ]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-xbuild-tools = [
-  "cmake",
-  "ninja"
-]
 skip = [
   "pp*",
   "*-musllinux*",
@@ -30,11 +25,9 @@ skip = [
 
 [tool.cibuildwheel.linux]
 before-all = [
-  "chmod +x tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh",
-  "dnf install -y redhat-lsb-core wget",
-  "tensor-array-repo/Tensor-Array/scripts/actions/install-cuda-rhel.sh"
+  "chmod +x /scripts/build-env/manylinux.sh",
+  "/scripts/build-env/manylinux.sh"
 ]
-xbuild-tools = ["cmake", "ninja"]
 
 [tool.cibuildwheel.linux.environment]
 cuda = "12.9"

@@ -4,11 +4,11 @@
 # The Tensor class is designed to be used in a computational graph for automatic differentiation.
 """
 
-from .tensor2 import Tensor as TensorWrapper
+from .._ext.tensor2 import Tensor as _Tensor
 from .datatypes import DataTypes
 from __future__ import annotations
 
-class Tensor(TensorWrapper):
+class Tensor(_Tensor):
     """
     A class representing a multi-dimensional array (tensor) with various operations.
     This class provides methods for mathematical operations, shape manipulation, and data type conversion.

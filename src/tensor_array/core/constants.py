@@ -17,8 +17,8 @@ def zeros(shape : tuple, dtype : DataTypes = DataTypes.S_INT_32) -> Tensor:
         Tensor: A tensor filled with zeros.
     """
 
-    from .tensor2 import zeros as zerosWrapper
-    return zerosWrapper(shape, dtype)
+    from .._ext.tensor2 import zeros as _zeros
+    return _zeros(shape, dtype)
 
 def rand(shape : tuple, seed: int = 0) -> Tensor:
     """
@@ -32,5 +32,5 @@ def rand(shape : tuple, seed: int = 0) -> Tensor:
         Tensor: A tensor filled with random values.
     """
 
-    from .tensor2 import rand as randWrapper
-    return randWrapper(shape, seed)
+    from .._ext.tensor2 import rand as _rand
+    return _rand(shape, seed)
