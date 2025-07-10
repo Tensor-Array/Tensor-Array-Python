@@ -79,4 +79,4 @@ cd ../..
 
 # Copy the shared library to the Tensor-Array lib directory
 echo "Copying the shared library to the Tensor-Array lib directory..."
-cp tensor-array-repo/Tensor-Array/lib/libtensorarray_core.so src/tensor_array/
+cp tensor-array-repo/Tensor-Array/lib/*.so src/tensor_array/
