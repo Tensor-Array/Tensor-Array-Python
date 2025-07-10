@@ -67,9 +67,10 @@ cd ..
 rm -rf build
 
 # Create symbolic link for lib to lib64 if it doesn't exist
-if [ -d "lib" ] && [ ! -L "lib64" ]; then
+echo "Checking for symbolic link from lib to lib64..."
+if [ ! -L "lib64" ] && [ -d "lib" ]; then
     echo "Creating symbolic link for lib to lib64..."
-    ln -s lib64 lib
+    ln -s lib lib64
 else
     echo "Symbolic link for lib to lib64 already exists or lib does not exist."
 fi
