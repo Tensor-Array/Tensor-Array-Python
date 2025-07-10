@@ -66,13 +66,13 @@ cmake --install .
 cd ..
 rm -rf build
 
-# Create symbolic link for lib to lib64 if it doesn't exist
-echo "Checking for symbolic link from lib to lib64..."
+# Create symbolic link for lib64 to lib if it doesn't exist
+echo "Checking for symbolic link from lib64 to lib..."
 if [ ! -L "lib64" ] && [ -d "lib" ]; then
-    echo "Creating symbolic link for lib to lib64..."
-    ln -s lib lib64
+    echo "Creating symbolic link for lib64 to lib..."
+    ln -s lib64 lib
 else
-    echo "Symbolic link for lib to lib64 already exists or lib does not exist."
+    echo "Symbolic link for lib64 to lib already exists or lib64 does not exist."
 fi
 
 cd ../..
