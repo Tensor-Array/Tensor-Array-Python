@@ -29,7 +29,7 @@ before-all = [
   "scripts/build-env/manylinux.sh"
 ]
 repair-wheel-command = [
-  "auditwheel repair -w {dest_dir} {wheel} --lib-sdir {package}/tensor-array-repo/Tensor-Array/lib/",
+  "auditwheel repair -w {dest_dir} {wheel} --lib-sdir {package}/tensor-array-repo/Tensor-Array/lib",
 ]
 
 [tool.cibuildwheel.linux.environment]
