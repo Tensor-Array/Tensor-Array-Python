@@ -53,7 +53,7 @@ def main():
             "": "src",
         },
         package_data = {
-            "tensor_array": ["*.so"]
+            "": ["*.so"]
         },
         ext_modules = ext_modules,
         cmdclass = {
