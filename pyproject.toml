@@ -28,6 +28,7 @@ before-all = [
   "chmod +x scripts/build-env/manylinux.sh",
   "scripts/build-env/manylinux.sh"
 ]
+repair-wheel-command = "auditwheel repair --exclude libcu*.so -w {dest_dir} {wheel}"
 
 [tool.cibuildwheel.linux.environment]
 cuda = "12.9"
