@@ -20,7 +20,7 @@ def main():
             sources = glob.glob(os.path.join("cpp", "*.cc")),
             include_dirs=["tensor-array-repo/Tensor-Array/include"],
             library_dirs=["tensor-array-repo/Tensor-Array/lib"],
-            #libraries=["libtensorarray_core"],
+            libraries=["tensorarray_core"],
             define_macros=[("VERSION_INFO", __version__)],
             ),
     ]
@@ -48,25 +48,20 @@ def main():
 
             "Environment :: GPU :: NVIDIA CUDA :: 12",
         ],
-        packages = [
-            "tensor_array.c_data.include",
-            "tensor_array.c_data.lib",
-            "tensor_array.c_data.scripts",
-            "tensor_array.local.scripts",
-        ] + find_packages(where="src"),
-        package_dir= {
-            "": "src",
-            "tensor_array.c_data.include": "tensor-array-repo/Tensor-Array/include",
-            "tensor_array.c_data.lib": "tensor-array-repo/Tensor-Array/lib",
-            "tensor_array.c_data.scripts": "tensor-array-repo/Tensor-Array/scripts",
-            "tensor_array.local.scripts": "scripts",
+        packages = find_packages() + ["tensor_array"],
+        package_dir={
+            "tensor_array": 'src/tensor_array',
         },
+        include_package_data=True,
         package_data = {
-            "tensor_array.c_data.include": ["**/*.hh"],
-            "tensor_array.c_data.lib": ["**/*.so"],
-            "tensor_array.c_data.scripts": ["**/*.sh"],
-            "tensor_array.local.scripts": ["**/*.sh"],
+            "": ["tensor-array-repo/Tensor-Array/lib/*.so"],
         },
+        data_files= [
+            ("tensor-array-repo/Tensor-Array/include", glob.glob(os.path.join("cpp", "include", "*.hh"))),
+            ("tensor-array-repo/Tensor-Array/lib", glob.glob(os.path.join("cpp", "lib", "*.so"))),
+            ("tensor-array-repo/Tensor-Array/scripts", glob.glob(os.path.join("scripts", "*.sh"))),
+            ("scripts", glob.glob(os.path.join("scripts", "local", "*.sh"))),
+        ],
         ext_modules = ext_modules,
         cmdclass = {
             "build_ext": build_ext,
