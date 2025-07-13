@@ -30,6 +30,7 @@ before-all = [
   "scripts/build-env/manylinux.sh"
 ]
 repair-wheel-command = [
+  "auditwheel show {wheel}"
   "auditwheel repair --exclude libcu*.so.* -w {dest_dir} {wheel}"
 ]
 
