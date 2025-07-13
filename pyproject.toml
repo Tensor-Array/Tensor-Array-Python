@@ -3,7 +3,6 @@ requires = [
   "setuptools>=42",
   "pybind11>=2.6.0",
   "cmake>=3.18,<3.29",
-  "patchelf",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -31,7 +30,6 @@ before-all = [
   "scripts/build-env/manylinux.sh"
 ]
 repair-wheel-command = [
-  "patchelf --set-rpath tensor-array-repo/Tensor-Array/lib {wheel}",
   "auditwheel repair --exclude libcu*.so.* -w {dest_dir} {wheel}"
 ]
 
