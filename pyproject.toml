@@ -28,11 +28,13 @@ before-all = [
   "chmod +x scripts/build-env/manylinux.sh",
   "scripts/build-env/manylinux.sh"
 ]
-repair-wheel-command = "auditwheel repair --exclude libcu*.so.* -w {dest_dir} {wheel}"
+repair-wheel-command = [
+  "auditwheel repair -L tensor-array-repo/Tensor-Array/lib --exclude libcu*.so.* -w {dest_dir} {wheel}"
+]
 
 [tool.cibuildwheel.linux.environment]
 cuda = "12.9"
 temp = "/tmp/cuda-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
 PATH = "${PATH}:${CUDA_PATH}/bin"
-LD_LIBRARY_PATH = "${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64:/project/tensor-array-repo/Tensor-Array/lib"
+LD_LIBRARY_PATH = "${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
