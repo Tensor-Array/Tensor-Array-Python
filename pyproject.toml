@@ -29,7 +29,7 @@ before-all = [
   "scripts/build-env/manylinux.sh"
 ]
 repair-wheel-command = [
-  "cp tensor-array-repo/Tensor-Array/lib/*.so .libs",
+  "cp tensor-array-repo/Tensor-Array/lib/*.so .libs/",
   "auditwheel repair --exclude libcu*.so.* -w {dest_dir} {wheel}"
 ]
 
