@@ -31,7 +31,7 @@ before-all = [
   "scripts/build-env/manylinux.sh"
 ]
 repair-wheel-command = [
-  "patchelf --set-rpath \"$ORIGIN/../lib\" tensor-array-repo/Tensor-Array/lib/*.so",
+  "patchelf --set-rpath tensor-array-repo/Tensor-Array/lib {wheel}",
   "auditwheel repair --exclude libcu*.so.* -w {dest_dir} {wheel}"
 ]
 
