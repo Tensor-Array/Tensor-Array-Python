@@ -46,8 +46,6 @@ echo "nvcc is available. Proceeding with the build environment setup."
 
 cd tensor-array-repo/Tensor-Array
 
-pip install "cmake>=3.18,<3.29"
-
 # Create build directory if it doesn't exist
 if [ ! -d "build" ]; then
     echo "Creating build directory..."
