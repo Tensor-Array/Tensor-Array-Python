@@ -18,8 +18,8 @@ def main():
         Pybind11Extension(
             "tensor_array._ext",
             sources = glob.glob(os.path.join("cpp", "*.cc")),
-            include_dirs=["usr/local/include"],
-            library_dirs=["usr/local/lib", "usr/local/lib64"],
+            include_dirs=["/usr/local/include"],
+            library_dirs=["/usr/local/lib", "/usr/local/lib64"],
             libraries=["tensorarray_core", "tensorarray_layers"],
             define_macros=[("VERSION_INFO", __version__)],
             ),
