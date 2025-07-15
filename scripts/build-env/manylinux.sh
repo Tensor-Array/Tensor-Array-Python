@@ -74,3 +74,5 @@ else
 fi
 
 cd ../..
+
+patchelf --set-rpath "\$ORIGIN/../lib" ./lib/*.so
