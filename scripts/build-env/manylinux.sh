@@ -81,7 +81,7 @@ fi
 for i in ./lib/*.so
 do
     echo "Add ${i} file"
-    patchelf --set-rpath "\$ORIGIN/../lib" ${i}
+    patchelf --add-needed ${i}
 done
 
 cd ../..
