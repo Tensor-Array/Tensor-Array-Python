@@ -1,5 +1,5 @@
-#include <tensor_array/core/tensor.hh>
-#include <tensor_array/core/data_type_wrapper.hh>
+#include <tensor-array/core/tensor.hh>
+#include <tensor-array/core/data_type_wrapper.hh>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/operators.h>
