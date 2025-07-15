@@ -75,4 +75,5 @@ fi
 
 cd ../..
 
-patchelf --set-rpath "\$ORIGIN/../lib" ./lib/*.so
+patchelf --set-rpath "\$ORIGIN/../lib" ./lib/libtensorarray_core.so
+patchelf --set-rpath "\$ORIGIN/../lib" ./lib/libtensorarray_layers.so
