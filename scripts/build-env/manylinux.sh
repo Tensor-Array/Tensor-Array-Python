@@ -1,10 +1,12 @@
 #!/bin/bash
 
 # Decide if we can proceed or not (root or sudo is required) and if so store whether sudo should be used or not. 
-if [ "$is_root" = false ] && [ "$has_sudo" = false ]; then 
+if [ "$is_root" = false ] && [ "$has_sudo" = false ]
+then 
     echo "Root or sudo is required. Aborting."
     exit 1
-elif [ "$is_root" = false ] ; then
+elif [ "$is_root" = false ]
+then
     USE_SUDO=sudo
 else
     USE_SUDO=
@@ -38,7 +40,8 @@ echo
 
 # Check if nvcc is available
 echo "Checking for nvcc..."
-if ! command -v nvcc &> /dev/null; then
+if ! command -v nvcc &> /dev/null
+then
     echo "nvcc could not be found. Please ensure CUDA is installed correctly."
     exit 1
 fi
@@ -47,7 +50,8 @@ echo "nvcc is available. Proceeding with the build environment setup."
 cd tensor-array-repo/Tensor-Array
 
 # Create build directory if it doesn't exist
-if [ ! -d "build" ]; then
+if [ ! -d "build" ]
+then
     echo "Creating build directory..."
     mkdir build
 else
@@ -66,13 +70,18 @@ rm -rf build
 
 # Create symbolic link for lib64 to lib if it doesn't exist
 echo "Checking for symbolic link from lib64 to lib..."
-if [ ! -L "lib" ] && [ -d "lib64" ]; then
+if [ ! -L "lib" ] && [ -d "lib64" ]
+then
     echo "Creating symbolic link for lib64 to lib..."
     ln -s lib64 lib
 else
     echo "Symbolic link for lib64 to lib already exists or lib64 does not exist."
 fi
 
-patchelf --set-rpath "\$ORIGIN/../lib" ./lib/*.so
+for i in ./lib/*.so
+do
+    echo "Add ${i}.so file"
+    patchelf --set-rpath "\$ORIGIN/../lib" ./lib/${i}.so
+done
 
 cd ../..
