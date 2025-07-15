@@ -73,7 +73,6 @@ else
     echo "Symbolic link for lib64 to lib already exists or lib64 does not exist."
 fi
 
-cd ../..
+patchelf --set-rpath "\$ORIGIN/../lib" ./lib/*.so
 
-patchelf --set-rpath "\$ORIGIN/../lib" ./lib/libtensorarray_core.so
-patchelf --set-rpath "\$ORIGIN/../lib" ./lib/libtensorarray_layers.so
+cd ../..
