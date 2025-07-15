@@ -20,7 +20,7 @@ def main():
             sources = glob.glob(os.path.join("cpp", "*.cc")),
             include_dirs=["/usr/local/include"],
             library_dirs=["/usr/local/lib", "/usr/local/lib64"],
-            libraries=["tensorarray_core", "tensorarray_layers"],
+            # libraries=["tensorarray_core", "tensorarray_layers"],
             define_macros=[("VERSION_INFO", __version__)],
             ),
     ]
