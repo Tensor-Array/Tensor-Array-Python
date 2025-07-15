@@ -78,10 +78,4 @@ else
     echo "Symbolic link for lib64 to lib already exists or lib64 does not exist."
 fi
 
-for i in ./lib/*.so
-do
-    echo "Add ${i} file"
-    patchelf --add-needed ${i}
-done
-
 cd ../..
