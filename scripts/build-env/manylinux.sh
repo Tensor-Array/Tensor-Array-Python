@@ -80,8 +80,8 @@ fi
 
 for i in ./lib/*.so
 do
-    echo "Add ${i}.so file"
-    patchelf --set-rpath "\$ORIGIN/../lib" ./lib/${i}.so
+    echo "Add ${i} file"
+    patchelf --set-rpath "\$ORIGIN/../lib" ${i}
 done
 
 cd ../..
