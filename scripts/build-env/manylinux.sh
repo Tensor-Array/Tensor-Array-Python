@@ -61,7 +61,7 @@ fi
 cd build
 # Configure the build with CMake
 echo "Configuring the build with CMake..."
-cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++
+cmake .. -DCMAKE_CUDA_FLAGS="--allow-unsupported-compiler"
 cmake --build .
 cmake --install .
 
