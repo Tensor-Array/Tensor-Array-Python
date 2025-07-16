@@ -21,6 +21,11 @@ jobs:
       matrix:
         # macos-13 is an intel runner, macos-14 is apple silicon
         os: [ "ubuntu-22.04", "ubuntu-22.04-arm" ]
+        arch: ["auto"]
+        include:
+        - os: ubuntu-22.04
+          arch: ppc64le
+    
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -36,15 +41,24 @@ jobs:
           python-version: "3.x"
 
       - name: Set up QEMU
-        if: runner.os == 'Linux' && runner.arch == 'X64'
+        if: ${{ matrix.arch != "auto" }}
         uses: docker/setup-qemu-action@v3
         with:
           platforms: all
           
       - name: Build wheels
+        if: ${{ matrix.arch == "auto" }}
+        uses: pypa/cibuildwheel@v3.0.1
+        with:
+          package-dir: .
+          output-dir: wheelhouse
+          config-file: "{package}/pyproject.toml"
+
+      - name: Build wheels
+        if: ${{ matrix.arch != "auto" }}
         uses: pypa/cibuildwheel@v3.0.1
         env:
-          CIBW_ARCHS_LINUX: ${{ runner.arch == 'X64' && 'auto ppc64le' || 'auto' }}
+          CIBW_ARCHS: ${{ matrix.arch }}
         with:
           package-dir: .
           output-dir: wheelhouse
