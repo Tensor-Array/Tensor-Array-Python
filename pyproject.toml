@@ -10,12 +10,12 @@ skip = [
   "pp*",
   "*-musllinux*",
 ]
-manylinux-x86_64-image = "manylinux2014"
-manylinux-i686-image = "manylinux2014"
-manylinux-pypy_x86_64-image = "manylinux2014"
-manylinux-aarch64-image = "manylinux2014"
-manylinux-ppc64le-image = "manylinux2014"
-manylinux-s390x-image = "manylinux2014"
+# manylinux-x86_64-image = "manylinux2014"
+# manylinux-i686-image = "manylinux2014"
+# manylinux-pypy_x86_64-image = "manylinux2014"
+# manylinux-aarch64-image = "manylinux2014"
+# manylinux-ppc64le-image = "manylinux2014"
+# manylinux-s390x-image = "manylinux2014"
 # musllinux_x86_64-image = "musllinux_1_1"
 # musllinux_i686-image = "musllinux_1_1"
 # musllinux_aarch64-image = "musllinux_1_1"
@@ -30,7 +30,7 @@ before-all = [
 ]
 
 [tool.cibuildwheel.linux.environment]
-cuda = "12.4"
+cuda = "12.9"
 temp = "/tmp/cuda-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
 PATH = "${PATH}:${CUDA_PATH}/bin"
