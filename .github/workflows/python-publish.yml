@@ -41,13 +41,13 @@ jobs:
           python-version: "3.x"
 
       - name: Set up QEMU
-        if: ${{ matrix.arch != "auto" }}
+        if: ${{ matrix.arch != 'auto' }}
         uses: docker/setup-qemu-action@v3
         with:
           platforms: all
           
       - name: Build wheels
-        if: ${{ matrix.arch == "auto" }}
+        if: ${{ matrix.arch == 'auto' }}
         uses: pypa/cibuildwheel@v3.0.1
         with:
           package-dir: .
@@ -55,7 +55,7 @@ jobs:
           config-file: "{package}/pyproject.toml"
 
       - name: Build wheels
-        if: ${{ matrix.arch != "auto" }}
+        if: ${{ matrix.arch != 'auto' }}
         uses: pypa/cibuildwheel@v3.0.1
         env:
           CIBW_ARCHS: ${{ matrix.arch }}
