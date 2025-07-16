@@ -31,7 +31,7 @@ before-all = [
 ]
 
 [tool.cibuildwheel.linux.environment]
-cuda = "12.9"
+cuda = "12.4"
 temp = "/tmp/cuda-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
 PATH = "${PATH}:${CUDA_PATH}/bin"
