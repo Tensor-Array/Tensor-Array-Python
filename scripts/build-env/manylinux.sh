@@ -62,11 +62,7 @@ fi
 cd build
 # Configure the build with CMake
 echo "Configuring the build with CMake..."
-cmake .. \
--DCMAKE_C_COMPILER="/usr/bin/gcc" \
--DCMAKE_CXX_COMPILER="/usr/bin/g++" \
--DCMAKE_CUDA_COMPILER="$(which nvcc)" \
--DCMAKE_CUDA_FLAGS="-ccbin /usr/bin/gcc"
+cmake .. -DCMAKE_CUDA_FLAGS="-ccbin /usr/bin/gcc"
 cmake --build .
 cmake --install .
 
