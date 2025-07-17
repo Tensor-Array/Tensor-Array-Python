@@ -66,7 +66,7 @@ cmake .. \
 -DCMAKE_C_COMPILER="/usr/bin/gcc" \
 -DCMAKE_CXX_COMPILER="/usr/bin/g++" \
 -DCMAKE_CUDA_COMPILER="$(which nvcc)" \
--DCMAKE_CUDA_FLAGS="-ccbin /usr/bin/gcc --default-stream per-thread"
+-DCMAKE_CUDA_FLAGS="-ccbin /usr/bin/gcc"
 cmake --build .
 cmake --install .
 
