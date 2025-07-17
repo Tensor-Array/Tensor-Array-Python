@@ -67,7 +67,7 @@ jobs:
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
-          name: release-dists-${{ runner.os }}-${{ matrix.arch }}
+          name: release-dists-${{ runner.os }}-${{ runner.arch }}-${{ matrix.arch }}
           path: wheelhouse/
 
   pypi-publish:
