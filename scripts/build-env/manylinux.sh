@@ -61,7 +61,7 @@ fi
 cd build
 # Configure the build with CMake
 echo "Configuring the build with CMake..."
-cmake ..
+cmake .. -DCMAKE_CUDA_COMPILER="$(which nvcc)"
 cmake --build .
 cmake --install .
 
