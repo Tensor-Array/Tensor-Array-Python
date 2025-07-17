@@ -127,7 +127,7 @@ jobs:
       - name: Retrieve release distributions
         uses: actions/download-artifact@v4
         with:
-          name: release-dists
+          pattern: release-dists-*
           path: wheelhouse/
 
       - name: Publish release distributions to TestPyPI
