@@ -62,7 +62,7 @@ fi
 cd build
 # Configure the build with CMake
 echo "Configuring the build with CMake..."
-cmake .. -DCMAKE_CUDA_FLAGS="-ccbin /usr/bin/gcc"
+cmake .. -DCMAKE_CUDA_HOST_COMPILER="/usr/bin/gcc"
 cmake --build .
 cmake --install .
 
