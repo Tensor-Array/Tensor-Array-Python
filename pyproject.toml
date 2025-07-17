@@ -30,6 +30,7 @@ before-all = [
 ]
 
 [tool.cibuildwheel.linux.environment]
+SHELL = "/bin/bash"
 cuda = "12.4"
 temp = "/tmp/cuda-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
