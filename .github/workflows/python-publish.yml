@@ -128,6 +128,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: release-dists-*
+          merge-multiple: true
           path: wheelhouse/
 
       - name: Publish release distributions to TestPyPI
@@ -135,4 +136,5 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           packages-dir: wheelhouse/
+
 
