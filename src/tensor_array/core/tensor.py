@@ -4,9 +4,9 @@
 # The Tensor class is designed to be used in a computational graph for automatic differentiation.
 """
 
+from __future__ import annotations
 from .._ext.tensor2 import Tensor as _Tensor
 from .datatypes import DataTypes
-from __future__ import annotations
 
 class Tensor(_Tensor):
     """
