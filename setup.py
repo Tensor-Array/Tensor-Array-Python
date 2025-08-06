@@ -7,7 +7,7 @@ import sys
 from setuptools import setup, find_packages
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 def main():
     cwd = os.path.dirname(os.path.abspath(__file__))
