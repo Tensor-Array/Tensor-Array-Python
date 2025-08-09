@@ -7,20 +7,22 @@ import sys
 from setuptools import setup, find_packages
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 
-__version__ = "0.0.7"
+__version__ = "0.0.8"
 
 def main():
     cwd = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(cwd, "README.md"), encoding="utf-8") as f:
         long_description = f.read()
     
+    tensor_array_lib_path = os.environ['TENSOR_ARRAY_INSTALL_PATH']
+
     ext_modules = [
         Pybind11Extension(
             "tensor_array._ext",
             sources = glob.glob(os.path.join("cpp", "*.cc")),
-            include_dirs=["/usr/local/include"],
-            library_dirs=["/usr/local/lib", "/usr/local/lib64"],
-            # libraries=["tensorarray_core", "tensorarray_layers"],
+            include_dirs=[tensor_array_lib_path + "/include"],
+            library_dirs=[tensor_array_lib_path + "/lib/tensor-array", tensor_array_lib_path + "/lib64/tensor-array"],
+            libraries=["tensorarray_core", "tensorarray_layers"],
             define_macros=[("VERSION_INFO", __version__)],
             ),
     ]

@@ -62,7 +62,7 @@ fi
 cd build
 # Configure the build with CMake
 echo "Configuring the build with CMake..."
-cmake .. -DCMAKE_CUDA_HOST_COMPILER="/usr/bin/gcc"
+cmake .. -DCMAKE_CUDA_HOST_COMPILER="/usr/bin/gcc" -DCMAKE_INSTALL_PREFIX=${TENSOR_ARRAY_INSTALL_PATH}
 cmake --build .
 cmake --install .
 
