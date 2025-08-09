@@ -7,7 +7,7 @@ import sys
 from setuptools import setup, find_packages
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 
 def main():
     cwd = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +18,7 @@ def main():
 
     ext_modules = [
         Pybind11Extension(
-            "tensor_array._ext",
+            "tensor_array.tensor2",
             sources = glob.glob(os.path.join("cpp", "*.cc")),
             include_dirs=[tensor_array_lib_path + "/include"],
             library_dirs=[tensor_array_lib_path + "/lib/tensor-array", tensor_array_lib_path + "/lib64/tensor-array"],

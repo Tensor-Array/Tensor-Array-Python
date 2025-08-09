@@ -4,7 +4,7 @@
 # The DataTypes enum includes types such as BOOL, INT, FLOAT, DOUBLE, and others, which correspond to the data types used in tensors.
 """
 
-from .._ext.tensor2 import DataType as _DataType
+from ..tensor2 import DataType as _DataType
 from enum import Enum
 
 class DataTypes(Enum):

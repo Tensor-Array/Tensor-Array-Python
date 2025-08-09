@@ -5,7 +5,7 @@
 """
 
 from __future__ import annotations
-from .._ext.tensor2 import Tensor as _Tensor
+from ..tensor2 import Tensor as _Tensor
 from .datatypes import DataTypes
 
 class Tensor(_Tensor):
