@@ -28,6 +28,9 @@ before-all = [
   "chmod +x scripts/build-env/manylinux.sh",
   "scripts/build-env/manylinux.sh"
 ]
+repair-wheel-command = [
+  "auditwheel repair -w {dest_dir} --exclude libcudart.so.* --exclude libcublas.so.* --exclude libcublasLt.so.* {wheel}"
+]
 
 [tool.cibuildwheel.linux.environment]
 cuda = "12.4"
@@ -35,4 +38,4 @@ temp = "/tmp/cuda-temp"
 TENSOR_ARRAY_INSTALL_PATH = "/tmp/tensor-array-temp"
 CUDA_PATH = "/usr/local/cuda-${cuda}"
 PATH = "${PATH}:${CUDA_PATH}/bin"
-LD_LIBRARY_PATH = "${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64"
+LD_LIBRARY_PATH = "${LD_LIBRARY_PATH}:${CUDA_PATH}/lib:${CUDA_PATH}/lib64:${TENSOR_ARRAY_INSTALL_PATH}/lib/tensor-array:${TENSOR_ARRAY_INSTALL_PATH}/lib64/tensor-array"
